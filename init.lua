@@ -235,12 +235,10 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- open plugin in github
-vim.keymap.set('n', '<leader>bb', function() 
+vim.keymap.set('n', '<leader>pg', function() 
   vim.cmd('execute "normal yi\'"')
-  url = 'github.com/'..tostring(vim.fn.getreg("0"))
-  vim.cmd(":! firefox "..url)
-  -- 'execute "normal yi'" | :! firefox 'github.com/<C-R>o'"
-end)
+  vim.cmd(":! firefox github.com/"..tostring(vim.fn.getreg("0")))
+end, { desc = '[P]lugin [G]ithub' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
