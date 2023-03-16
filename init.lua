@@ -40,7 +40,6 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-  -- :checkhealth which_key
   { 'folke/which-key.nvim', 
     config = function()
       vim.o.timeout = true
@@ -48,8 +47,7 @@ require('lazy').setup({
     end,
   },
 
-  { -- Adds git releated signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
+  { 'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
@@ -62,16 +60,14 @@ require('lazy').setup({
     },
   },
 
-  { -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+  { 'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'onedark'
     end,
   },
 
-  { -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
+  { 'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
@@ -83,10 +79,8 @@ require('lazy').setup({
     },
   },
 
-  { -- Add indentation guides even on blank lines
+  { -- indentation guides
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
@@ -239,6 +233,14 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+
+-- open plugin in github
+vim.keymap.set('n', '<leader>bb', function() 
+  vim.cmd('execute "normal yi\'"')
+  url = 'github.com/'..tostring(vim.fn.getreg("0"))
+  vim.cmd(":! firefox "..url)
+  -- 'execute "normal yi'" | :! firefox 'github.com/<C-R>o'"
+end)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
