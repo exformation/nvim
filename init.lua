@@ -243,7 +243,26 @@ vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").loa
 -- TODO: sneak-type plugins
 -- TODO: folds
 -- TODO: bind for moving lines up and down
+-- TODO: run command 
+--   dir = ~/.config/awesome -> restart awm
+--   dir = ~/.config/nvim    -> source config
+--   dir = ~/nix/            -> nrs 
+--   dir = contains main.py  -> python main.py ?
+-- TODO: start separating everything out into other files 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
+--[[
+File
+Buffer
+Help
+Command
+Vim
+Directory
+LSP
+TS
+Debug
+Git
+]]
 
 nl('b', ':bp<CR>')
 i('<C-z>','<ESC><C-z>') -- TODO: how can i avoid entering normal mode?
@@ -251,7 +270,9 @@ nl('q', ':wq<CR>', { desc = 'Write and quit' })
 nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
-nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc' })
+-- TODO: make things like this not have the "press enter" popup all the time
+-- async dispatch?
+nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc', silent = true })
 nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 nl('/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -259,15 +280,16 @@ nl('/', function()
     winblend = 10,
     previewer = false,
   })
-end, { desc = '[/] Fuzzily search in current buffer' })
+end, { desc = '[/] fuzzily search in current buffer' })
 
-nl('sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-nl('sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-nl('sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-nl('sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-nl('sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+nl('sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
+nl('sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
+nl('sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
+nl('sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
+nl('sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
 
 -- open plugin in github
+-- TODO: list all links matching the pattern in telescope and press enter to gh browse
 nl('pg', function()
   vim.cmd 'execute "normal yi\'"'
   vim.cmd(':! firefox github.com/' .. tostring(vim.fn.getreg '0'))
