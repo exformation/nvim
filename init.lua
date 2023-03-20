@@ -40,14 +40,18 @@ require('lazy').setup({
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
 
-  { 'folke/which-key.nvim', 
+  {
+    'folke/which-key.nvim',
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 0
     end,
   },
 
-  { 'lewis6991/gitsigns.nvim',
+  'folke/todo-comments.nvim',
+
+  {
+    'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
@@ -60,14 +64,16 @@ require('lazy').setup({
     },
   },
 
-  { 'navarasu/onedark.nvim',
+  {
+    'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'onedark'
     end,
   },
 
-  { 'nvim-lualine/lualine.nvim',
+  {
+    'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
     opts = {
       options = {
@@ -119,7 +125,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
+  require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -159,13 +165,12 @@ o.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-
 function n(...)
-  vim.keymap.set('n',...)
+  vim.keymap.set('n', ...)
 end
 
-function nl(k,...)
-  n('<leader>'..k,...)
+function nl(k, ...)
+  n('<leader>' .. k, ...)
 end
 
 -- Remap for dealing with word wrap
@@ -198,11 +203,16 @@ require('telescope').setup {
   },
 }
 
-require("which-key").register({
+require('which-key').register({
   f = {
-    b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
-  }
-}, { prefix = "<leader>" })
+    b = {
+      function()
+        print 'bar'
+      end,
+      'Foobar',
+    }, -- you can also pass functions!
+  },
+}, { prefix = '<leader>' })
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
@@ -222,14 +232,14 @@ pcall(require('telescope').load_extension, 'fzf')
 -- TODO: auto save/source files/config
 -- TODO: formatting
 -- TODO: copy doom emacs whichkey binds
-
+-- TODO: debug LSP
 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
-nl('gg',':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
-nl('w', ':w<CR>', { desc = "Write buffer" })
+nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
+nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-nl('sv', ':source ~/.config/nvim/init.lua<CR>', {desc = '[S]ource [V]imrc'})
+nl('sv', ':source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc' })
 nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 nl('/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
@@ -248,9 +258,9 @@ nl('sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' }
 nl('sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- open plugin in github
-nl('pg', function() 
-  vim.cmd('execute "normal yi\'"')
-  vim.cmd(":! firefox github.com/"..tostring(vim.fn.getreg("0")))
+nl('pg', function()
+  vim.cmd 'execute "normal yi\'"'
+  vim.cmd(':! firefox github.com/' .. tostring(vim.fn.getreg '0'))
 end, { desc = '[P]lugin [G]ithub' })
 
 -- [[ Configure Treesitter ]]
@@ -258,6 +268,9 @@ end, { desc = '[P]lugin [G]ithub' })
 -- local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
 -- vim.fn.mkdir(parser_install_dir, "p")
 -- vim.opt.runtimepath:append(parser_install_dir)
+
+require('todo-comments').setup()
+
 require('nvim-treesitter.configs').setup {
   -- parser_install_dir = parser_install_dir,
 
@@ -326,10 +339,10 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Diagnostic keymaps
-n('[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-n(']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-nl('e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-nl('q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
