@@ -245,7 +245,8 @@ vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").loa
 -- TODO: bind for moving lines up and down
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
-i('<C-z','<ESC><C-z>')
+nl('b', ':bp<CR>')
+i('<C-z>','<ESC><C-z>') -- TODO: how can i avoid entering normal mode?
 nl('q', ':wq<CR>', { desc = 'Write and quit' })
 nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
