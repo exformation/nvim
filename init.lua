@@ -164,6 +164,10 @@ function n(...)
   vim.keymap.set('n',...)
 end
 
+function nl(k,...)
+  n('<leader>'..k,...)
+end
+
 -- Remap for dealing with word wrap
 n('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 n('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -220,7 +224,8 @@ pcall(require('telescope').load_extension, 'fzf')
 -- TODO: formatting
 -- TODO: copy doom emacs whichkey binds
 
-n('<leader>gg', ':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
+--n('<leader>gg', ':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
+nl('gg',':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
 n('<leader>w', ':w<CR>', { desc = "Write buffer" })
 n('<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 n('<leader>sv', ':source ~/.config/nvim/init.lua<CR>', {desc = '[S]ource [V]imrc'})
@@ -338,7 +343,6 @@ local on_attach = function(_, bufnr)
     if desc then
       desc = 'LSP: ' .. desc
     end
-
     n(keys, func, { buffer = bufnr, desc = desc })
   end
 
