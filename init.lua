@@ -165,7 +165,7 @@ function n(...)
 end
 
 function nl(k,...)
-  n(''..k,...)
+  n('<leader>'..k,...)
 end
 
 -- Remap for dealing with word wrap
