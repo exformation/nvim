@@ -220,7 +220,7 @@ pcall(require('telescope').load_extension, 'fzf')
 -- TODO: formatting
 -- TODO: copy doom emacs whichkey binds
 
-vim.keymap.set('n', '<leader>gg', ':! gg<CR>', { desc = "add, commit, push" })
+vim.keymap.set('n', '<leader>gg', ':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
 vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = "Write buffer" })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader>sv', ':source ~/.config/nvim/init.lua<CR>', {desc = '[S]ource [V]imrc'})
