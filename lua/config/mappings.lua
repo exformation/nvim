@@ -1,5 +1,7 @@
 -- TODO: make things like this not have the "press enter" popup all the time
 -- async dispatch?
+-- TODO: give everything a desc
+-- TODO: add everything to which-key
 
 --- HELPER FUNCTIONS ---
 function n(...)
@@ -24,20 +26,19 @@ end
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
-i('<C-z>', '<ESC><C-z>') -- TODO: how can i avoid entering normal mode?
-
-n('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-n('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+-- TODO: how can i avoid entering normal mode?
+i('<C-z>', '<ESC><C-z>')
 
 n('<A-j>', ':m .+1<CR>')
 n('<A-k>', ':m .-2<CR>')
-x("<A-j>", ":m '>+1<CR>gv-gv")
-x("<A-k>", ":m '<-2<CR>gv-gv")
+x('<A-j>', ":m '>+1<CR>gv-gv")
+x('<A-k>', ":m '<-2<CR>gv-gv")
 
+-- TODO: run on vim start?
 nl('ls', [[<cmd>lua require("persistence").load()<cr>]])
 nl('b', ':b#<CR>')
-nl('q', ':wq<CR>', { desc = 'Write and quit' })
-nl('w', ':w<CR>', { desc = 'Write buffer' })
+nl('q', ':wqa<CR>', { desc = 'Write and quit' })
+nl('w', ':wa<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
 nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc', silent = true })
@@ -63,3 +64,45 @@ n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' }
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+--[[
+https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/%2Bevil-bindings.el#L290
+File
+Buffer
+Help
+Command
+Vim
+Directory
+LSP
+TS
+Debug
+Git
+Insert
+Search
+Toggle
+Load
+New
+]]
+
+local m = {
+  f = { name = 'file'  },
+  b = { name = 'buffer' },
+  c = { name = 'command' },
+  h = { name = 'help' },
+  d = { name = 'dap' },
+  l = { name = 'lsp' },
+  t = { name = 'ts' },
+  g = { name = 'git' },
+  s = { name = 'search' },
+  n = { name = 'new' },
+  v = { name = 'vim' },
+  e = { name = 'english' },
+  L = { name = 'Load' },
+  T = { name = 'Toggle' },
+  S = { name = 'System' },
+}
+
+m.f.n = { '<cmd>enew<cr>', 'New File' }
+
+local wk = require 'which-key'
+wk.register(m, { prefix = '<leader>' })
