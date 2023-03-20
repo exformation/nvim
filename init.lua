@@ -220,11 +220,12 @@ pcall(require('telescope').load_extension, 'fzf')
 -- TODO: better write/quit options
 -- TODO: return to previous line number
 -- TODO: auto save/source files/config
--- TODO: gg bind
 -- TODO: formatting
 -- TODO: copy doom emacs whichkey binds
 
---nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
+
+--vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
 nl('gg',':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
 nl('w', ':w<CR>', { desc = "Write buffer" })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
