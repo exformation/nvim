@@ -88,8 +88,10 @@ New
 -- TODO: create a bind for going through all your todo items
 -- TODO: create a bind for creating a todo item
 -- TODO: make a helper function for making this cleaner
+-- TODO: bind for write+format+gg
+-- TODO: GET LSP WORKING!!
 local m = {
-  f = { name = 'file'  },
+  f = { name = 'file' },
   b = { name = 'buffer' },
   c = { name = 'command' },
   h = { name = 'help' },
@@ -101,6 +103,8 @@ local m = {
   n = { name = 'new' },
   v = { name = 'vim' },
   e = { name = 'english' },
+  o = { name = 'open' },
+  r = { name = 'run' },
   L = { name = 'Load' },
   T = { name = 'Toggle' },
   S = { name = 'System' },
