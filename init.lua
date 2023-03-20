@@ -127,7 +127,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  require 'kickstart.plugins.autoformat',
+  -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
 
   -- NOTE: The import below automatically adds your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -138,32 +138,8 @@ require('lazy').setup({
   --
   --    An additional note is that if you only copied in the `init.lua`, you can just comment this line
   --    to get rid of the warning telling you that there are not plugins in `lua/custom/plugins/`.
-  { import = 'custom.plugins' },
+  -- { import = 'custom.plugins' },
 }, {})
-
--- See `:help vim.o`
-o = vim.o
-wo = vim.wo
-
-o.hlsearch = false
-o.scrolloff = 999
-wo.number = true
-o.mouse = 'a'
-o.clipboard = 'unnamedplus'
-o.breakindent = true
-o.undofile = true
-o.ignorecase = true
-o.smartcase = true
-o.relativenumber = true
-o.tabstop=2
-o.shiftwidth=2
-o.expandtab=true
-wo.signcolumn = 'yes'
--- o.updatetime = 250
--- o.timeout = true
--- o.timeoutlen = 300
-o.completeopt = 'menuone,noselect'
-o.termguicolors = true
 
 -- [[ Basic Keymaps ]]
 -- Keymaps for better default experience
@@ -179,7 +155,7 @@ function nl(k, ...)
 end
 
 function i(...)
-  vim.keymap.set('i',...)
+  vim.keymap.set('i', ...)
 end
 
 -- vim.keymap.set('i', 'jk', '<ESC>')
@@ -229,9 +205,8 @@ require('which-key').register({
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
-vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").load()<cr>]], {})
+vim.api.nvim_set_keymap('n', '<leader>ls', [[<cmd>lua require("persistence").load()<cr>]], {})
 -- require("persistence").load()
-
 
 -- See `:help telescope.builtin`
 
@@ -243,15 +218,15 @@ vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").loa
 -- TODO: sneak-type plugins
 -- TODO: folds
 -- TODO: bind for moving lines up and down
--- TODO: run command 
+-- TODO: run command
 --   dir = ~/.config/awesome -> restart awm
 --   dir = ~/.config/nvim    -> source config
---   dir = ~/nix/            -> nrs 
+--   dir = ~/nix/            -> nrs
 --   dir = contains main.py  -> python main.py ?
--- TODO: start separating everything out into other files 
--- TODO: don't open help buffers in a new window 
+-- TODO: start separating everything out into other files
+-- TODO: don't open help buffers in a new window
 -- TODO: insert mode leader key M-SPC
--- 
+--
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
 --[[
@@ -272,7 +247,7 @@ Toggle
 ]]
 
 nl('b', ':bp<CR>')
-i('<C-z>','<ESC><C-z>') -- TODO: how can i avoid entering normal mode?
+i('<C-z>', '<ESC><C-z>') -- TODO: how can i avoid entering normal mode?
 nl('q', ':wq<CR>', { desc = 'Write and quit' })
 nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -309,10 +284,10 @@ end, { desc = '[P]lugin [G]ithub' })
 -- vim.opt.runtimepath:append(parser_install_dir)
 
 require('todo-comments').setup()
-require("persistence").setup()
-require("better_escape").setup {
-  mapping = {"jk"},
-  timeout = 100
+require('persistence').setup()
+require('better_escape').setup {
+  mapping = { 'jk' },
+  timeout = 100,
 }
 
 require('nvim-treesitter.configs').setup {
@@ -526,3 +501,4 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+require 'config'
