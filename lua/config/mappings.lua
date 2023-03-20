@@ -84,6 +84,10 @@ Load
 New
 ]]
 
+-- TODO: start collecting all the commands that you want to create mappings for
+-- TODO: create a bind for going through all your todo items
+-- TODO: create a bind for creating a todo item
+-- TODO: make a helper function for making this cleaner
 local m = {
   f = { name = 'file'  },
   b = { name = 'buffer' },
