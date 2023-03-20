@@ -154,7 +154,10 @@ o.undofile = true
 o.ignorecase = true
 o.smartcase = true
 o.relativenumber = true
-vim.wo.signcolumn = 'yes'
+o.tabstop=2
+o.shiftwidth=2
+o.expandtab=true
+wo.signcolumn = 'yes'
 -- o.updatetime = 250
 -- o.timeout = true
 -- o.timeoutlen = 300
@@ -172,6 +175,10 @@ end
 
 function nl(k, ...)
   n('<leader>' .. k, ...)
+end
+
+function i(...)
+  vim.keymap.set('i',...)
 end
 
 -- vim.keymap.set('i', 'jk', '<ESC>')
@@ -227,18 +234,21 @@ vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").loa
 
 -- See `:help telescope.builtin`
 
--- TODO: return to previous line number
 -- TODO: formatting
 -- TODO: copy doom-emacs/nvchad whichkey binds
 -- TODO: debug LSP
-
+-- TODO: prettify telescope
+-- TODO: more telescope binds
+-- TODO: jk escape
+-- TODO: sneak-type plugins
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
+i('<C-z','<ESC><C-z>')
 nl('q', ':wq<CR>', { desc = 'Write and quit' })
 nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
-nl('sv', ':source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc' })
+nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc' })
 nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 nl('/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
