@@ -211,7 +211,19 @@ pcall(require('telescope').load_extension, 'fzf')
 -- nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 
 -- See `:help telescope.builtin`
+
+-- TODO: fg bg for terminal
+-- TODO: better write/quit options
+-- TODO: return to previous line number
+-- TODO: auto save/source files/config
+-- TODO: gg bind
+-- TODO: formatting
+-- TODO: copy doom emacs whichkey binds
+
+vim.keymap.set('n', '<leader>gg', ':! gg<CR>', { desc = "add, commit, push" })
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = "Write buffer" })
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>sv', ':source ~/.config/nvim/init.lua<CR>', {desc = '[S]ource [V]imrc'})
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
