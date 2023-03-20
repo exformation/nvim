@@ -84,12 +84,15 @@ Load
 New
 ]]
 
+local tb = require('telescope.builtin')
+
+-- TODO: GET LSP WORKING!!
 -- TODO: start collecting all the commands that you want to create mappings for
 -- TODO: create a bind for going through all your todo items
 -- TODO: create a bind for creating a todo item
 -- TODO: make a helper function for making this cleaner
 -- TODO: bind for write+format+gg
--- TODO: GET LSP WORKING!!
+-- TODO: do you want to noun+verb or verb+noun? FS->File->Search, SF->Search->File
 local m = {
   f = { name = 'file' },
   b = { name = 'buffer' },
@@ -105,12 +108,14 @@ local m = {
   e = { name = 'english' },
   o = { name = 'open' },
   r = { name = 'run' },
+  -- just use non-mnemonics i guess
   L = { name = 'Load' },
   T = { name = 'Toggle' },
   S = { name = 'System' },
 }
 
 m.f.n = { '<cmd>enew<cr>', 'New File' }
+m.f.s = { tb.find_files, 'Search Files' }
 
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })
