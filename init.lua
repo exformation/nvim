@@ -165,7 +165,7 @@ function n(...)
 end
 
 function nl(k,...)
-  n('<leader>'..k,...)
+  n(''..k,...)
 end
 
 -- Remap for dealing with word wrap
@@ -224,13 +224,13 @@ pcall(require('telescope').load_extension, 'fzf')
 -- TODO: formatting
 -- TODO: copy doom emacs whichkey binds
 
---n('<leader>gg', ':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
+--nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
 nl('gg',':! git a && git c "boop" && git p<CR>', { desc = "add, commit, push" })
-n('<leader>w', ':w<CR>', { desc = "Write buffer" })
-n('<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-n('<leader>sv', ':source ~/.config/nvim/init.lua<CR>', {desc = '[S]ource [V]imrc'})
-n('<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-n('<leader>/', function()
+nl('w', ':w<CR>', { desc = "Write buffer" })
+nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+nl('sv', ':source ~/.config/nvim/init.lua<CR>', {desc = '[S]ource [V]imrc'})
+nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+nl('/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
     winblend = 10,
@@ -238,16 +238,16 @@ n('<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
--- n('<leader>q', ":wq", { desc = '[Q]uit' })
+-- nl('q', ":wq", { desc = '[Q]uit' })
 
-n('<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
-n('<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-n('<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-n('<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-n('<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+nl('sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+nl('sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
+nl('sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
+nl('sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+nl('sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- open plugin in github
-n('<leader>pg', function() 
+nl('pg', function() 
   vim.cmd('execute "normal yi\'"')
   vim.cmd(":! firefox github.com/"..tostring(vim.fn.getreg("0")))
 end, { desc = '[P]lugin [G]ithub' })
@@ -327,8 +327,8 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 n('[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 n(']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-n('<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-n('<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+nl('e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+nl('q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
