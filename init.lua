@@ -203,15 +203,15 @@ require("which-key").register({
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
-function nl(...)
-  parms = {...}
-  vim.keymap.set('n','<leader>',...)
-end
+-- function nl(...)
+--   parms = {...}
+--   vim.keymap.set('n','<leader>'..parms[1],...)
+-- end
 
-nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+-- nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 
 -- See `:help telescope.builtin`
--- vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
 vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme, layout, etc.
