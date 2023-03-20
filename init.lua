@@ -217,13 +217,6 @@ require('which-key').register({
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
--- function nl(...)
---   parms = {...}
---   vim.keymap.set('n','<leader>'..parms[1],...)
--- end
-
--- nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-
 -- See `:help telescope.builtin`
 
 -- TODO: fg bg for terminal
@@ -236,6 +229,8 @@ pcall(require('telescope').load_extension, 'fzf')
 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
+
+nl('q', ':wq<CR>', { desc = 'Write and quit' })
 nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
 nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -342,7 +337,7 @@ require('nvim-treesitter.configs').setup {
 n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
