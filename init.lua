@@ -240,8 +240,9 @@ vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").loa
 -- TODO: debug LSP
 -- TODO: prettify telescope
 -- TODO: more telescope binds
--- TODO: jk escape
 -- TODO: sneak-type plugins
+-- TODO: folds
+-- TODO: bind for moving lines up and down
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
 i('<C-z','<ESC><C-z>')
