@@ -49,6 +49,7 @@ require('lazy').setup({
   },
 
   'folke/todo-comments.nvim',
+  'folke/persistence.nvim',
 
   {
     'lewis6991/gitsigns.nvim',
@@ -173,6 +174,10 @@ function nl(k, ...)
   n('<leader>' .. k, ...)
 end
 
+-- vim.keymap.set('i', 'jk', '<ESC>')
+-- vim.keymap.set('i', 'jk', '<C-\\><C-n>')
+vim.keymap.set('i', 'jk', '<C-\\><C-n>', { noremap = true })
+
 -- Remap for dealing with word wrap
 n('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 n('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -216,24 +221,23 @@ require('which-key').register({
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").load()<cr>]], {})
+-- require("persistence").load()
+
 
 -- See `:help telescope.builtin`
 
--- TODO: fg bg for terminal
--- TODO: better write/quit options
 -- TODO: return to previous line number
--- TODO: auto save/source files/config
 -- TODO: formatting
--- TODO: copy doom emacs whichkey binds
+-- TODO: copy doom-emacs/nvchad whichkey binds
 -- TODO: debug LSP
 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
-
 nl('q', ':wq<CR>', { desc = 'Write and quit' })
-nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
 nl('w', ':w<CR>', { desc = 'Write buffer' })
 nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
+nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
 nl('sv', ':source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc' })
 nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
 nl('/', function()
@@ -243,8 +247,6 @@ nl('/', function()
     previewer = false,
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
-
--- nl('q', ":wq", { desc = '[Q]uit' })
 
 nl('sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 nl('sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
@@ -265,6 +267,7 @@ end, { desc = '[P]lugin [G]ithub' })
 -- vim.opt.runtimepath:append(parser_install_dir)
 
 require('todo-comments').setup()
+require("persistence").setup()
 
 require('nvim-treesitter.configs').setup {
   -- parser_install_dir = parser_install_dir,
