@@ -50,6 +50,7 @@ require('lazy').setup({
 
   'folke/todo-comments.nvim',
   'folke/persistence.nvim',
+  'max397574/better-escape.nvim',
 
   {
     'lewis6991/gitsigns.nvim',
@@ -278,6 +279,10 @@ end, { desc = '[P]lugin [G]ithub' })
 
 require('todo-comments').setup()
 require("persistence").setup()
+require("better_escape").setup {
+  mapping = {"jk"},
+  timeout = 100
+}
 
 require('nvim-treesitter.configs').setup {
   -- parser_install_dir = parser_install_dir,
