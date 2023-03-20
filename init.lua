@@ -249,9 +249,13 @@ vim.api.nvim_set_keymap("n", "<leader>ls", [[<cmd>lua require("persistence").loa
 --   dir = ~/nix/            -> nrs 
 --   dir = contains main.py  -> python main.py ?
 -- TODO: start separating everything out into other files 
+-- TODO: don't open help buffers in a new window 
+-- TODO: insert mode leader key M-SPC
+-- 
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
 --[[
+https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/%2Bevil-bindings.el#L290
 File
 Buffer
 Help
@@ -262,6 +266,9 @@ LSP
 TS
 Debug
 Git
+Insert
+Search
+Toggle
 ]]
 
 nl('b', ':bp<CR>')
