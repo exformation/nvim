@@ -3,6 +3,8 @@ vim.g.maplocalleader = ' '
 
 require 'config'
 
+-- TODO: save edit history
+-- TODO: font looks weird?
 -- TODO: formatting
 -- TODO: copy doom-emacs/nvchad whichkey binds
 -- TODO: debug LSP
@@ -20,5 +22,3 @@ require 'config'
 -- TODO: don't open help buffers in a new window
 -- TODO: insert mode leader key M-SPC
 --vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
-
-

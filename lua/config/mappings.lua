@@ -65,26 +65,7 @@ n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
---[[
-https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/%2Bevil-bindings.el#L290
-File
-Buffer
-Help
-Command
-Vim
-Directory
-LSP
-TS
-Debug
-Git
-Insert
-Search
-Toggle
-Load
-New
-]]
-
-local tb = require('telescope.builtin')
+local tb = require 'telescope.builtin'
 
 -- TODO: GET LSP WORKING!!
 -- TODO: start collecting all the commands that you want to create mappings for
@@ -93,6 +74,8 @@ local tb = require('telescope.builtin')
 -- TODO: make a helper function for making this cleaner
 -- TODO: bind for write+format+gg
 -- TODO: do you want to noun+verb or verb+noun? FS->File->Search, SF->Search->File
+
+-- https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/%2Bevil-bindings.el#L290
 local m = {
   f = { name = 'file' },
   b = { name = 'buffer' },
