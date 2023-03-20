@@ -1,2 +1,2 @@
--- require("config.mappings")
+require 'config.mappings'
 require 'config.set'

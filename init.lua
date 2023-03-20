@@ -141,44 +141,6 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 }, {})
 
--- [[ Basic Keymaps ]]
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
-function n(...)
-  vim.keymap.set('n', ...)
-end
-
-function nl(k, ...)
-  n('<leader>' .. k, ...)
-end
-
-function i(...)
-  vim.keymap.set('i', ...)
-end
-
--- vim.keymap.set('i', 'jk', '<ESC>')
--- vim.keymap.set('i', 'jk', '<C-\\><C-n>')
-vim.keymap.set('i', 'jk', '<C-\\><C-n>', { noremap = true })
-
--- Remap for dealing with word wrap
-n('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-n('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
--- n('k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
--- n('j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -205,7 +167,6 @@ require('which-key').register({
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
-vim.api.nvim_set_keymap('n', '<leader>ls', [[<cmd>lua require("persistence").load()<cr>]], {})
 -- require("persistence").load()
 
 -- See `:help telescope.builtin`
@@ -245,37 +206,6 @@ Insert
 Search
 Toggle
 ]]
-
-nl('b', ':bp<CR>')
-i('<C-z>', '<ESC><C-z>') -- TODO: how can i avoid entering normal mode?
-nl('q', ':wq<CR>', { desc = 'Write and quit' })
-nl('w', ':w<CR>', { desc = 'Write buffer' })
-nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
--- TODO: make things like this not have the "press enter" popup all the time
--- async dispatch?
-nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc', silent = true })
-nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-nl('/', function()
-  -- You can pass additional configuration to telescope to change theme, layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] fuzzily search in current buffer' })
-
-nl('sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
-nl('sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
-nl('sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
-nl('sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
-nl('sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
-
--- open plugin in github
--- TODO: list all links matching the pattern in telescope and press enter to gh browse
-nl('pg', function()
-  vim.cmd 'execute "normal yi\'"'
-  vim.cmd(':! firefox github.com/' .. tostring(vim.fn.getreg '0'))
-end, { desc = '[P]lugin [G]ithub' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -358,13 +288,12 @@ require('nvim-treesitter.configs').setup {
 }
 
 -- Diagnostic keymaps
-n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
--- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
+function n(...)
+  vim.keymap.set('n', ...)
+end
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
