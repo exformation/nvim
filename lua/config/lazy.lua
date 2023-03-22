@@ -13,30 +13,24 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- git
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-
-  -- automatic tabstop and shiftwidth
-  'tpope/vim-sleuth',
-
-  { -- LSP
-    'neovim/nvim-lspconfig',
+  {
+    'VonHeikemen/lsp-zero.nvim',
+    branch = 'v2.x',
     dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      -- status updates?
-      { 'j-hui/fidget.nvim', opts = {} },
-      -- additional config?
-      'folke/neodev.nvim',
+      { 'neovim/nvim-lspconfig' }, -- Required
+      { 'hrsh7th/nvim-cmp' }, -- Required
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'hrsh7th/cmp-buffer' }, -- Optional
+      { 'hrsh7th/cmp-path' }, -- Optional
+      { 'saadparwaiz1/cmp_luasnip' }, -- Optional
+      { 'hrsh7th/cmp-nvim-lua' }, -- Optional
+      { 'L3MON4D3/LuaSnip' }, -- Required
+      { 'rafamadriz/friendly-snippets' }, -- Optional
     },
   },
-
-  { -- CMP
-    'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  },
-
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+  'tpope/vim-sleuth',
   {
     'folke/which-key.nvim',
     config = function()
@@ -44,11 +38,9 @@ require('lazy').setup({
       vim.o.timeoutlen = 0
     end,
   },
-
   'folke/todo-comments.nvim',
   'folke/persistence.nvim',
   'max397574/better-escape.nvim',
-
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -62,7 +54,6 @@ require('lazy').setup({
       },
     },
   },
-
   {
     'navarasu/onedark.nvim',
     priority = 1000,
@@ -70,10 +61,8 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
-
   {
     'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = false,
@@ -83,24 +72,15 @@ require('lazy').setup({
       },
     },
   },
-
-  { -- indentation guides
+  {
     'lukas-reineke/indent-blankline.nvim',
     opts = {
       char = '┊',
       show_trailing_blankline_indent = false,
     },
   },
-
-  -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
-  -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available. Make sure you have the system
-  -- requirements installed.
   {
     'nvim-telescope/telescope-fzf-native.nvim',
     -- NOTE: If you are having trouble with this installation,
@@ -111,7 +91,7 @@ require('lazy').setup({
     end,
   },
 
-  { -- Highlight, edit, and navigate code
+  {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
@@ -120,6 +100,5 @@ require('lazy').setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
-
   -- { import = 'config.plugins' },
 }, {})
