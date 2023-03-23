@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
+    -- 'github/copilot.vim',
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v2.x',
     dependencies = {

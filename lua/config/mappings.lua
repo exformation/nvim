@@ -35,7 +35,7 @@ x('<A-j>', ":m '>+1<CR>gv-gv")
 x('<A-k>', ":m '<-2<CR>gv-gv")
 
 -- TODO: run on vim start?
-nl('ls', [[<cmd>lua require("persistence").load()<cr>]])
+-- nl('ls', [[<cmd>lua require("persistence").load()<cr>]])
 nl('b', ':b#<CR>')
 nl('q', ':wqa<CR>', { desc = 'Write and quit' })
 nl('w', ':wa<CR>', { desc = 'Write buffer' })
@@ -65,7 +65,7 @@ n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
-local tb = require 'telescope.builtin'
+
 
 -- TODO: GET LSP WORKING!!
 -- TODO: start collecting all the commands that you want to create mappings for
@@ -97,8 +97,22 @@ local m = {
   S = { name = 'System' },
 }
 
+local tb = require 'telescope.builtin'
 m.f.n = { '<cmd>enew<cr>', 'New File' }
 m.f.s = { tb.find_files, 'Search Files' }
+
+local lb = vim.lsp.buf
+m.l.a = { lb.code_action, 'code_action' }
+m.l.d = { lb.definition, 'definition' }
+m.l.f = { lb.format, 'format' }
+m.l.h = { lb.hover, 'hover' }
+m.l.i = { lb.implemention, 'implemention' }
+m.l.n = { lb.rename, 'rename' }
+m.l.r = { lb.references, 'references' }
+m.l.s = { lb.signature_help, 'signature_help' }
+m.l.t = { lb.type_definition, 'type_definition' }
+
+
 
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })

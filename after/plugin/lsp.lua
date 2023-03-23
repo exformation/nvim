@@ -1,7 +1,7 @@
 local lsp = require('lsp-zero').preset({
   name = 'minimal',
-  set_lsp_keymaps = true,
   manage_nvim_cmp = true,
+  set_lsp_keymaps = false,
   suggest_lsp_servers = false,
 })
 
