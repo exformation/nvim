@@ -1,26 +1,23 @@
--- TODO: make things like this not have the "press enter" popup all the time
--- async dispatch?
 -- TODO: give everything a desc
--- TODO: add everything to which-key
 
 --- HELPER FUNCTIONS ---
-function n(...)
+local function n(...)
   vim.keymap.set('n', ...)
 end
 
-function v(...)
+local function v(...)
   vim.keymap.set('v', ...)
 end
 
-function x(...)
+local function x(...)
   vim.keymap.set('x', ...)
 end
 
-function nl(k, ...)
+local function nl(k, ...)
   n('<leader>' .. k, ...)
 end
 
-function i(...)
+local function i(...)
   vim.keymap.set('i', ...)
 end
 
@@ -71,13 +68,10 @@ local m = {
   S = { name = 'System' },
 }
 
-local tb = require 'telescope.builtin'
 m.f.n = { '<cmd>enew<cr>', 'new file' }
-m.f.r = { ':GMove ', 'rename (base directory)' }
-m.f.R = { function()
-  local dir = vim.cmd(":echo expand('%:p:h')")
-  vim.cmd(':GMove ' .. dir .. '/')
-end, 'rename (current directory)' }
+m.f.m = { ':GMove ', 'move (base directory)' }
+m.f.r = { ':GRename ', 'rename (current directory)' }
+m.f.d = { '<cmd>GDelete<cr>', 'delete' }
 -- copy
 
 m.b.q = { '<cmd>bd<cr>', 'close buffer' }
@@ -89,7 +83,8 @@ m.v.Q = { '<cmd>qa!<cr>', 'get me out!' }
 m.v.s = { '<cmd>:w | :source ~/.config/nvim/init.lua<CR>', 'source config' }
 
 
--- TODO: just do this with a macro?
+-- TODO: just do this with a macro? stringify the function name
+local tb = require 'telescope.builtin'
 m.s.a = { tb.autocommands, "autocommands" }
 m.s.b = { tb.buffers, "buffers" }
 m.s.c = { tb.commands, "commands" }
@@ -140,6 +135,7 @@ m.g.g = {
 m.g.c = { tb.git_commits, 'checkout commit' }
 m.g.b = { tb.git_branches, 'checkout branch' }
 m.g.s = { tb.git_status, 'status' }
+m.g.B = { '<cmd>GBrowse<cr>', 'browse' }
 
 
 local wk = require 'which-key'
