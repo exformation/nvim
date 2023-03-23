@@ -76,20 +76,20 @@ m.f.n = { '<cmd>enew<cr>', 'new file' }
 m.f.r = { ':GMove ', 'rename (base directory)' }
 m.f.R = { function()
   local dir = vim.cmd(":echo expand('%:p:h')")
-  vim.print(dir)
-  -- vim.cmd(':GMove ' .. dir .. '/')
+  vim.cmd(':GMove ' .. dir .. '/')
 end, 'rename (current directory)' }
--- rename, move, copy
+-- copy
 
 m.b.q = { '<cmd>bd<cr>', 'close buffer' }
 m.b.b = { '<cmd>b#<cr>', 'previous buffer' }
 
 m.v.q = { '<cmd>wqa<cr>', 'save and quit' }
-m.v.w = { '<cmd>qa<cr>', 'save' }
+m.v.w = { '<cmd>wa<cr>', 'save' }
 m.v.Q = { '<cmd>qa!<cr>', 'get me out!' }
 m.v.s = { '<cmd>:w | :source ~/.config/nvim/init.lua<CR>', 'source config' }
 
 
+-- TODO: just do this with a macro?
 m.s.a = { tb.autocommands, "autocommands" }
 m.s.b = { tb.buffers, "buffers" }
 m.s.c = { tb.commands, "commands" }
