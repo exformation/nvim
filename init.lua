@@ -3,16 +3,10 @@ vim.g.maplocalleader = ' '
 
 require 'config'
 
--- TODO: save edit history
 -- TODO: font looks weird?
--- TODO: formatting
--- TODO: copy doom-emacs/nvchad whichkey binds
--- TODO: debug LSP
 -- TODO: prettify telescope
--- TODO: more telescope binds
 -- TODO: sneak-type plugins
 -- TODO: folds
--- TODO: bind for moving lines up and down
 -- TODO: run command
 --   dir = ~/.config/awesome -> restart awm
 --   dir = ~/.config/nvim    -> source config

@@ -34,10 +34,6 @@ n('<A-k>', ':m .-2<CR>')
 x('<A-j>', ":m '>+1<CR>gv-gv")
 x('<A-k>', ":m '<-2<CR>gv-gv")
 
-nl('b', ':b#<CR>')
-nl('q', ':wqa<CR>', { desc = 'Write and quit' })
-nl('w', ':wa<CR>', { desc = 'Write buffer' })
-nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc', silent = true })
 -- TODO: list all links matching the pattern in telescope and press enter to gh browse
 nl('pg', function()
   vim.cmd 'execute "normal yi\'"'
@@ -77,10 +73,22 @@ local m = {
 
 local tb = require 'telescope.builtin'
 m.f.n = { '<cmd>enew<cr>', 'new file' }
+m.f.r = { ':GMove ', 'rename (base directory)' }
+m.f.R = { function()
+  local dir = vim.cmd(":echo expand('%:p:h')")
+  vim.print(dir)
+  -- vim.cmd(':GMove ' .. dir .. '/')
+end, 'rename (current directory)' }
 -- rename, move, copy
 
 m.b.q = { '<cmd>bd<cr>', 'close buffer' }
 m.b.b = { '<cmd>b#<cr>', 'previous buffer' }
+
+m.v.q = { '<cmd>wqa<cr>', 'save and quit' }
+m.v.w = { '<cmd>qa<cr>', 'save' }
+m.v.Q = { '<cmd>qa!<cr>', 'get me out!' }
+m.v.s = { '<cmd>:w | :source ~/.config/nvim/init.lua<CR>', 'source config' }
+
 
 m.s.a = { tb.autocommands, "autocommands" }
 m.s.b = { tb.buffers, "buffers" }
