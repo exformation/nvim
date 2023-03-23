@@ -34,8 +34,6 @@ n('<A-k>', ':m .-2<CR>')
 x('<A-j>', ":m '>+1<CR>gv-gv")
 x('<A-k>', ":m '<-2<CR>gv-gv")
 
--- TODO: run on vim start?
--- nl('ls', [[<cmd>lua require("persistence").load()<cr>]])
 nl('b', ':b#<CR>')
 nl('q', ':wqa<CR>', { desc = 'Write and quit' })
 nl('w', ':wa<CR>', { desc = 'Write buffer' })
@@ -62,12 +60,11 @@ end, { desc = '[P]lugin [G]ithub' })
 
 n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
 
--- TODO: GET LSP WORKING!!
 -- TODO: start collecting all the commands that you want to create mappings for
 -- TODO: create a bind for going through all your todo items
 -- TODO: create a bind for creating a todo item
@@ -111,8 +108,12 @@ m.l.n = { lb.rename, 'rename' }
 m.l.r = { lb.references, 'references' }
 m.l.s = { lb.signature_help, 'signature_help' }
 m.l.t = { lb.type_definition, 'type_definition' }
+m.l.e = { vim.diagnostic.open_float, 'error' }
 
-
+m.g.g = { function()
+  vim.cmd ':lua vim.lsp.buf.format()'
+  vim.cmd(':! git a && git c "boop" && git p')
+end, 'add, commit, push' }
 
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })
