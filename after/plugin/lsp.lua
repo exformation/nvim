@@ -1,13 +1,13 @@
-local lsp = require('lsp-zero').preset({
+local lsp = require('lsp-zero').preset {
   name = 'minimal',
   manage_nvim_cmp = true,
   set_lsp_keymaps = false,
   suggest_lsp_servers = false,
-})
+}
 
 -- When you don't have mason.nvim installed
 -- You'll need to list the servers installed in your system
-lsp.setup_servers({'tsserver', 'eslint'})
+lsp.setup_servers { 'tsserver', 'eslint' }
 
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()

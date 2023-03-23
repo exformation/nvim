@@ -4,4 +4,4 @@ require('better_escape').setup {
   mapping = { 'jk' },
   timeout = 100,
 }
-require("persistence").load()
+require('persistence').load()

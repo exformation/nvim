@@ -63,8 +63,6 @@ n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 -- nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 -- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
-
-
 -- TODO: start collecting all the commands that you want to create mappings for
 -- TODO: create a bind for going through all your todo items
 -- TODO: create a bind for creating a todo item
@@ -110,10 +108,13 @@ m.l.s = { lb.signature_help, 'signature_help' }
 m.l.t = { lb.type_definition, 'type_definition' }
 m.l.e = { vim.diagnostic.open_float, 'error' }
 
-m.g.g = { function()
-  vim.cmd ':lua vim.lsp.buf.format()'
-  vim.cmd(':! git a && git c "boop" && git p')
-end, 'add, commit, push' }
+m.g.g = {
+  function()
+    vim.lsp.buf.format()
+    vim.cmd ':! git a && git c "boop" && git p'
+  end,
+  'add, commit, push',
+}
 
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })
