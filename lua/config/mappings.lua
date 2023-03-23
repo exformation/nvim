@@ -37,21 +37,7 @@ x('<A-k>', ":m '<-2<CR>gv-gv")
 nl('b', ':b#<CR>')
 nl('q', ':wqa<CR>', { desc = 'Write and quit' })
 nl('w', ':wa<CR>', { desc = 'Write buffer' })
-nl('?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-nl('gg', ':! git a && git c "boop" && git p<CR>', { desc = 'add, commit, push' })
 nl('sv', ':w | :source ~/.config/nvim/init.lua<CR>', { desc = '[S]ource [V]imrc', silent = true })
-nl('<space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-nl('/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] fuzzily search in current buffer' })
-nl('sf', require('telescope.builtin').find_files, { desc = '[s]earch [f]iles' })
-nl('sh', require('telescope.builtin').help_tags, { desc = '[s]earch [h]elp' })
-nl('sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
-nl('sg', require('telescope.builtin').live_grep, { desc = '[s]earch by [g]rep' })
-nl('sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
 -- TODO: list all links matching the pattern in telescope and press enter to gh browse
 nl('pg', function()
   vim.cmd 'execute "normal yi\'"'
@@ -60,14 +46,11 @@ end, { desc = '[P]lugin [G]ithub' })
 
 n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
--- nl('e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
--- nl('q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- TODO: start collecting all the commands that you want to create mappings for
 -- TODO: create a bind for going through all your todo items
 -- TODO: create a bind for creating a todo item
 -- TODO: make a helper function for making this cleaner
--- TODO: bind for write+format+gg
 -- TODO: do you want to noun+verb or verb+noun? FS->File->Search, SF->Search->File
 
 -- https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/%2Bevil-bindings.el#L290
@@ -93,28 +76,63 @@ local m = {
 }
 
 local tb = require 'telescope.builtin'
-m.f.n = { '<cmd>enew<cr>', 'New File' }
-m.f.s = { tb.find_files, 'Search Files' }
+m.f.n = { '<cmd>enew<cr>', 'new file' }
+-- rename, move, copy
+
+m.b.q = { '<cmd>bd<cr>', 'close buffer' }
+m.b.b = { '<cmd>b#<cr>', 'previous buffer' }
+
+m.s.a = { tb.autocommands, "autocommands" }
+m.s.b = { tb.buffers, "buffers" }
+m.s.c = { tb.commands, "commands" }
+m.s.e = { tb.diagnostics, "diagnostics" }
+m.s.f = { tb.find_files, "find_files" }
+m.s.g = { tb.live_grep, "live_grep" }
+m.s.h = { tb.command_history, "command_history" }
+m.s.j = { tb.jumplist, "jumplist" }
+m.s.k = { tb.keymaps, "keymaps" }
+m.s.l = { tb.loclist, "loclist" }
+m.s.m = { tb.marks, "marks" }
+m.s.o = { tb.oldfiles, "oldfiles" }
+m.s.q = { tb.quickfix, "quickfix" }
+m.s.r = { tb.register, "register" }
+m.s.s = { tb.spell_suggest, "spell_suggest" }
+m.s.t = { tb.help_tags, "help_tags" }
+m.s.v = { tb.vim_options, "vim_options" }
+m.s.w = { tb.grep_string, "grep_string" }
+m.s.B = { tb.current_buffer_fuzzy_find, "current_buffer_fuzzy_find" }
+m.s.D = { tb.lsp_document_symbols, "lsp_document_symbols" }
+m.s.F = { tb.git_files, "git_files" }
+m.s.H = { tb.search_history, "search_history" }
+m.s.M = { tb.man_pages, "man_pages" }
+m.s.Q = { tb.quickfixhistory, "quickfixhistory" }
+m.s.R = { tb.resume, "resume" }
+m.s.T = { tb.treesitter, "treesitter" }
+m.s.W = { tb.lsp_workspace_symbols, "lsp_workspace_symbols" }
 
 local lb = vim.lsp.buf
 m.l.a = { lb.code_action, 'code_action' }
-m.l.d = { lb.definition, 'definition' }
+m.l.d = { tb.lsp_definitions, 'definition(s)' } -- lb.definition
 m.l.f = { lb.format, 'format' }
 m.l.h = { lb.hover, 'hover' }
-m.l.i = { lb.implemention, 'implemention' }
+m.l.i = { tb.lsp_implementations, 'implemention' }     -- lb.implemention,
 m.l.n = { lb.rename, 'rename' }
-m.l.r = { lb.references, 'references' }
+m.l.r = { tb.lsp_references, 'references' }            -- lb.references,
 m.l.s = { lb.signature_help, 'signature_help' }
-m.l.t = { lb.type_definition, 'type_definition' }
+m.l.t = { tb.lsp_type_definitions, 'type_definition' } --lb.type_definition
 m.l.e = { vim.diagnostic.open_float, 'error' }
 
 m.g.g = {
   function()
-    vim.lsp.buf.format()
+    lb.format()
     vim.cmd ':! git a && git c "boop" && git p'
   end,
-  'add, commit, push',
+  'format, add, commit, push',
 }
+m.g.c = { tb.git_commits, 'checkout commit' }
+m.g.b = { tb.git_branches, 'checkout branch' }
+m.g.s = { tb.git_status, 'status' }
+
 
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })
