@@ -1,4 +1,5 @@
 -- TODO: give everything a desc
+-- TODO: Check out :h feedkeys() and :h :map-<expr>
 
 --- HELPER FUNCTIONS ---
 local function n(...)
@@ -45,6 +46,8 @@ n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 -- TODO: create a bind for creating a todo item
 -- TODO: make a helper function for making this cleaner
 -- TODO: do you want to noun+verb or verb+noun? FS->File->Search, SF->Search->File
+-- TODO: order wk suggestions such that capital is afterwards?
+-- TODO: read feedkeys() docs
 
 -- https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/%2Bevil-bindings.el#L290
 local m = {
