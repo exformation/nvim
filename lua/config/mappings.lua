@@ -141,6 +141,8 @@ m.g.b = { tb.git_branches, 'checkout branch' }
 m.g.s = { tb.git_status, 'status' }
 m.g.B = { '<cmd>GBrowse<cr>', 'browse' }
 
+m.T.T = {'<cmd>NvimTreeFindFileToggle<cr>', 'toggle tree' }
+
 
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })
