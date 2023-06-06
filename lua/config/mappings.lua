@@ -33,10 +33,10 @@ x('<A-j>', ":m '>+1<CR>gv-gv")
 x('<A-k>', ":m '<-2<CR>gv-gv")
 
 -- TODO: list all links matching the pattern in telescope and press enter to gh browse
-nl('pg', function()
-  vim.cmd 'execute "normal yi\'"'
-  vim.cmd(':! firefox github.com/' .. tostring(vim.fn.getreg '0'))
-end, { desc = '[P]lugin [G]ithub' })
+-- nl('pg', function()
+--   vim.cmd 'execute "normal yi\'"'
+--   vim.cmd(':! firefox github.com/' .. tostring(vim.fn.getreg '0'))
+-- end, { desc = '[P]lugin [G]ithub' })
 
 n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
@@ -115,6 +115,7 @@ m.s.Q = { tb.quickfixhistory, "quickfixhistory" }
 m.s.R = { tb.resume, "resume" }
 m.s.T = { tb.treesitter, "treesitter" }
 m.s.W = { tb.lsp_workspace_symbols, "lsp_workspace_symbols" }
+m.s.x = { function() tb.find_files( { cwd = vim.fn.expand('%:p:h') }) end, "relative find" }
 
 local lb = vim.lsp.buf
 m.l.a = { lb.code_action, 'code_action' }
