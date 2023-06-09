@@ -116,6 +116,9 @@ m.s.R = { tb.resume, "resume" }
 m.s.T = { tb.treesitter, "treesitter" }
 m.s.W = { tb.lsp_workspace_symbols, "lsp_workspace_symbols" }
 m.s.x = { function() tb.find_files( { cwd = vim.fn.expand('%:p:h') }) end, "relative find" }
+-- TODO: i don't remember what I was doing or if it works but I probably don't need to install 20 plugins for project management
+-- just make it yorself it's easy
+m.s.p = { function() require('telescope').extensions.projects.projects{} end, "projects" }
 
 local lb = vim.lsp.buf
 m.l.a = { lb.code_action, 'code_action' }

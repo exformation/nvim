@@ -2,7 +2,7 @@
 -- -- See `:help telescope` and `:help telescope.setup()`
 -- -- See `:help telescope.builtin`
 -- -- TODO: explore telescope extensions (file browsers, gh, etc.)
--- require('telescope').setup {
+require('telescope').setup {
 --   defaults = {
 --     prompt_prefix = 'test$ ',
 --     mappings = {
@@ -27,6 +27,9 @@
 --       theme = 'dropdown',
 --     },
 --   },
---   -- extensions = {}
--- }
--- pcall(require('telescope').load_extension, 'fzf')
+  extensions = {
+    'projects'
+  }
+}
+-- require('telescope').load_extension('fzf')
+-- require('telescope').load_extension('projects')
