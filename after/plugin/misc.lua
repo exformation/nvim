@@ -35,9 +35,9 @@ require('lualine').setup {
   extensions = { 'nvim-tree' }
 }
 require('nvim-surround').setup()
-require('hop').setup{
+require('hop').setup {
   -- TODO: you can expand this when you start to use taipo again
-  keys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",--",./1234567890;'",
+  keys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", --",./1234567890;'",
 }
 
 require('onedark').load()
