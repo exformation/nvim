@@ -26,14 +26,19 @@ require('lualine').setup {
   globalstatus = true,
   sections = {
     lualine_a = {},
-    lualine_b = {'mode', 'branch', 'diagnostics', 'diff', 'selectioncount'},
+    lualine_b = { 'mode', 'branch', 'diagnostics', 'diff', 'selectioncount' },
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {'buffers'},
-  }
+    lualine_z = { 'buffers' },
+  },
+  extensions = { 'nvim-tree' }
 }
 require('nvim-surround').setup()
+require('hop').setup{
+  -- TODO: you can expand this when you start to use taipo again
+  keys = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",--",./1234567890;'",
+}
 
 require('onedark').load()
 require('persistence').load()

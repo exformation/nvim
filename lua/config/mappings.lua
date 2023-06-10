@@ -40,6 +40,9 @@ x('<A-k>', ":m '<-2<CR>gv-gv")
 
 n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+n('f', require('hop').hint_char1)
+n('t', require('hop').hint_words)
+n('F', require('hop').hint_lines_skip_whitespace)
 
 -- TODO: start collecting all the commands that you want to create mappings for
 -- TODO: create a bind for going through all your todo items
@@ -78,7 +81,9 @@ m.f.d = { '<cmd>GDelete<cr>', 'delete' }
 -- copy
 
 m.b.q = { '<cmd>bd<cr>', 'close buffer' }
-m.b.b = { '<cmd>b#<cr>', 'previous buffer' }
+m.b.b = { '<cmd>b#<cr>', 'last buffer' }
+m.b.n = { '<cmd>bn<cr>', 'next buffer' }
+m.b.p = { '<cmd>bp<cr>', 'previous buffer' }
 
 m.v.q = { '<cmd>wqa<cr>', 'save and quit' }
 m.v.w = { '<cmd>wa<cr>', 'save' }
@@ -142,7 +147,7 @@ m.g.g = {
 m.g.c = { tb.git_commits, 'checkout commit' }
 m.g.b = { tb.git_branches, 'checkout branch' }
 m.g.s = { tb.git_status, 'status' }
-m.g.B = { '<cmd>GBrowse<cr>', 'browse' }
+m.g.B = { ':!gh browse<cr>', 'browse' }
 
 m.T.T = {'<cmd>NvimTreeFindFileToggle<cr>', 'toggle tree' }
 
