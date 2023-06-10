@@ -20,3 +20,6 @@ o.timeout = true
 o.timeoutlen = 0
 o.undofile = true
 o.updatetime = 0
+-- o.foldmethod=expr
+-- o.foldexpr=nvim_treesitter#foldexpr()
+-- o.nofoldenable  

@@ -20,6 +20,7 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+-- TODO: create some of your own status indicators (LSP and such)
 require('lualine').setup {
   options = { section_separators = '', component_separators = '' },
   globalstatus = true,
@@ -32,6 +33,7 @@ require('lualine').setup {
     lualine_z = {'buffers'},
   }
 }
+require('nvim-surround').setup()
 
 require('onedark').load()
 require('persistence').load()

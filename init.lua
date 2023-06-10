@@ -6,7 +6,6 @@ vim.g.loaded_netrwPlugin = 1
 
 require 'config'
 
--- TODO: font looks weird?
 -- TODO: prettify telescope
 -- TODO: sneak-type plugins
 -- TODO: folds
