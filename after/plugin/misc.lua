@@ -43,14 +43,21 @@ require('hop').setup {
 require('nvim-treesitter.configs').setup {
   rainbow = {
     enable = true,
-    -- list of languages you want to disable the plugin for
-    disable = { 'jsx', 'cpp' },
-    -- Which query to use for finding delimiters
+    -- disable = { 'jsx', 'cpp' },
     query = 'rainbow-parens',
-    -- Highlight the entire buffer all at once
     strategy = require('ts-rainbow').strategy.global,
   }
 }
 
 require('onedark').load()
 require('persistence').load()
+
+
+-- TODO: format buffer on save
+-- TODO: autosave
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   buffer = buffer,
+--   callback = function()
+--     vim.lsp.buf.format { async = false }
+--   end
+-- })
