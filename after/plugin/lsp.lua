@@ -1,6 +1,17 @@
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup {}
-lspconfig.nil_ls.setup{}
+
+lspconfig.nil_ls.setup {
+  autostart = true,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixfmt" },
+        -- command = { "nixpkgs-fmt" },
+      },
+    },
+  }
+}
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
@@ -10,7 +21,7 @@ lspconfig.lua_ls.setup {
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
@@ -26,8 +37,8 @@ lspconfig.lua_ls.setup {
 }
 -- lspconfig.tsserver.setup {}
 -- lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
-  -- settings = {
-    -- ['rust-analyzer'] = {},
-  -- },
+-- Server-specific settings. See `:help lspconfig-setup`
+-- settings = {
+-- ['rust-analyzer'] = {},
+-- },
 -- }
