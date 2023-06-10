@@ -40,9 +40,12 @@ x('<A-k>', ":m '<-2<CR>gv-gv")
 
 n('[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 n(']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-n('f', require('hop').hint_char1)
-n('t', require('hop').hint_words)
-n('F', require('hop').hint_lines_skip_whitespace)
+
+local hop = require 'hop'
+n('f', hop.hint_char1)
+n('t', hop.hint_words)
+n('F', hop.hint_lines_skip_whitespace)
+n('T', hop.hint_anywhere)
 
 -- TODO: start collecting all the commands that you want to create mappings for
 -- TODO: create a bind for going through all your todo items
@@ -88,7 +91,8 @@ m.b.p = { '<cmd>bp<cr>', 'previous buffer' }
 m.v.q = { '<cmd>wqa<cr>', 'save and quit' }
 m.v.w = { '<cmd>wa<cr>', 'save' }
 m.v.Q = { '<cmd>qa!<cr>', 'get me out!' }
-m.v.s = { '<cmd>:w | :source ~/.config/nvim/init.lua<CR>', 'source config' }
+m.v.s = { ':source $MYVIMRC<cr>', 'source config' }
+m.v.S = { ':source %<cr>', 'source config' }
 
 
 -- TODO: just do this with a macro? stringify the function name
@@ -120,10 +124,10 @@ m.s.Q = { tb.quickfixhistory, "quickfixhistory" }
 m.s.R = { tb.resume, "resume" }
 m.s.T = { tb.treesitter, "treesitter" }
 m.s.W = { tb.lsp_workspace_symbols, "lsp_workspace_symbols" }
-m.s.x = { function() tb.find_files( { cwd = vim.fn.expand('%:p:h') }) end, "relative find" }
+m.s.x = { function() tb.find_files({ cwd = vim.fn.expand('%:p:h') }) end, "relative find" }
 -- TODO: i don't remember what I was doing or if it works but I probably don't need to install 20 plugins for project management
 -- just make it yorself it's easy
-m.s.p = { function() require('telescope').extensions.projects.projects{} end, "projects" }
+-- m.s.p = { function() require('telescope').extensions.projects.projects {} end, "projects" }
 
 local lb = vim.lsp.buf
 m.l.a = { lb.code_action, 'code_action' }
@@ -149,7 +153,7 @@ m.g.b = { tb.git_branches, 'checkout branch' }
 m.g.s = { tb.git_status, 'status' }
 m.g.B = { ':!gh browse<cr>', 'browse' }
 
-m.T.T = {'<cmd>NvimTreeFindFileToggle<cr>', 'toggle tree' }
+m.T.T = { '<cmd>NvimTreeFindFileToggle<cr>', 'toggle tree' }
 
 
 local wk = require 'which-key'
