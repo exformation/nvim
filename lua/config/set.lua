@@ -1,21 +1,22 @@
 -- See `:help vim.o`
 o = vim.o
 
-o.hlsearch = false
-o.scrolloff = 999
-o.clipboard = 'unnamedplus'
 o.breakindent = true
-o.undofile = true
-o.ignorecase = true
-o.smartcase = true
-o.relativenumber = true
-o.tabstop = 2
-o.shiftwidth = 2
-o.expandtab = true
+o.clipboard = 'unnamedplus'
 o.completeopt = 'menuone,noselect'
-o.termguicolors = true
-o.signcolumn = 'yes'
+o.expandtab = true
+o.hlsearch = false
+o.ignorecase = true
+o.nohlsearch = true
 o.number = true
-o.updatetime = 0
+o.relativenumber = true
+o.scrolloff = 999
+o.shiftwidth = 2
+o.signcolumn = 'yes'
+o.smartcase = true
+o.tabstop = 2
+o.termguicolors = true
 o.timeout = true
 o.timeoutlen = 0
+o.undofile = true
+o.updatetime = 0

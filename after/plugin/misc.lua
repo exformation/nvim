@@ -20,9 +20,18 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
-
-
-
+require('lualine').setup {
+  options = { section_separators = '', component_separators = '' },
+  globalstatus = true,
+  sections = {
+    lualine_a = {},
+    lualine_b = {'mode', 'branch', 'diagnostics', 'diff', 'selectioncount'},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {'buffers'},
+  }
+}
 
 require('onedark').load()
 require('persistence').load()
