@@ -192,7 +192,7 @@ local load_session = function(opts)
         return {
           value = entry,
           display = vim.fn.fnamemodify(entry, ":t:gs?%?/?:~:r"),
-          ordinal = entry,
+          ordinal = vim.fn.fnamemodify(entry, ":t:gs?%?/?:~:r"),
         }
       end
     },
