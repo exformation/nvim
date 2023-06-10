@@ -15,7 +15,7 @@ lspconfig.pylsp.setup {
   settings = {
     pylsp = {
       plugins = {
-        -- TODO: autoimport 
+        -- TODO: autoimport
         pycodestyle = {
           ignore = { 'W391' },
           maxLineLength = 120

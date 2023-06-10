@@ -156,5 +156,61 @@ m.g.B = { ':!gh browse<cr>', 'browse' }
 m.T.T = { '<cmd>NvimTreeFindFileToggle<cr>', 'toggle tree' }
 
 
+
+local e = vim.fn.fnameescape
+local dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/")
+local pickers = require "telescope.pickers"
+local finders = require "telescope.finders"
+local conf = require("telescope.config").values
+local actions = require "telescope.actions"
+local action_state = require "telescope.actions.state"
+local ends_with = function(str, ending)
+  return ending == "" or string.sub(str, -string.len(ending)) == ending
+end
+local get_session_dirs = function()
+  local dirs = vim.fn.glob(dir .. "*.vim", true, true)
+  local display_dirs = {}
+  for _, path in ipairs(dirs) do
+    -- if ends_with(path, "home.vim") or ends_with(path, "home%exform.vim") then
+    --   goto continue
+    -- end
+    -- if ends_with(path, "home.vim") then
+    --   goto continue
+    -- end
+    table.insert(display_dirs, path)
+    ::continue::
+  end
+  return display_dirs
+end
+local load_session = function(opts)
+  opts = opts or {}
+  pickers.new(opts, {
+    prompt_title = "sessions",
+    finder = finders.new_table {
+      results = get_session_dirs(),
+      entry_maker = function(entry)
+        return {
+          value = entry,
+          display = vim.fn.fnamemodify(entry, ":t:gs?%?/?:~:r"),
+          ordinal = entry,
+        }
+      end
+    },
+    sorter = conf.generic_sorter(opts),
+    attach_mappings = function(prompt_bufnr, _)
+      actions.select_default:replace(function()
+        actions.close(prompt_bufnr)
+        local file = action_state.get_selected_entry().value
+        if vim.fn.filereadable(file) ~= 0 then
+          vim.cmd("silent! source " .. e(file))
+        end
+      end)
+      return true
+    end,
+  }):find()
+end
+m.L.S = { load_session, 'load session' }
+
+
 local wk = require 'which-key'
 wk.register(m, { prefix = '<leader>' })

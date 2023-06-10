@@ -49,6 +49,11 @@ require('nvim-treesitter.configs').setup {
   }
 }
 
+-- to execute the function
+-- load_session()
+-- telescope dir | silent! source
+
+
 require('onedark').load()
 require('persistence').load()
 
