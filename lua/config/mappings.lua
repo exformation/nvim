@@ -171,13 +171,10 @@ local get_session_dirs = function()
   local dirs = vim.fn.glob(dir .. "*.vim", true, true)
   local display_dirs = {}
   for _, path in ipairs(dirs) do
-    -- if ends_with(path, "home.vim") or ends_with(path, "home%exform.vim") then
-    --   goto continue
-    -- end
-    -- if ends_with(path, "home.vim") then
-    --   goto continue
-    -- end
-    table.insert(display_dirs, path)
+    if ends_with(path, "home.vim") then -- or ends_with(path, "home%exform.vim") then
+      goto continue
+    end
+    table.insert(display_dirs, { path, vim.fn.fnamemodify(path, ":t:gs?%?/?:~:r") })
     ::continue::
   end
   return display_dirs
@@ -191,16 +188,16 @@ local load_session = function(opts)
       entry_maker = function(entry)
         return {
           value = entry,
-          display = vim.fn.fnamemodify(entry, ":t:gs?%?/?:~:r"),
-          ordinal = vim.fn.fnamemodify(entry, ":t:gs?%?/?:~:r"),
+          display = entry[2],
+          ordinal = entry[2],
         }
       end
     },
-    sorter = conf.generic_sorter(opts),
+    sorter = conf.file_sorter(opts),
     attach_mappings = function(prompt_bufnr, _)
       actions.select_default:replace(function()
         actions.close(prompt_bufnr)
-        local file = action_state.get_selected_entry().value
+        local file = action_state.get_selected_entry().value[1]
         if vim.fn.filereadable(file) ~= 0 then
           vim.cmd("silent! source " .. e(file))
         end
