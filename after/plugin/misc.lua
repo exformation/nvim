@@ -50,10 +50,11 @@ require('nvim-treesitter.configs').setup {
   }
 }
 require("flutter-tools").setup {}
-
--- to execute the function
--- load_session()
--- telescope dir | silent! source
+require("copilot").setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+})
+require("copilot_cmp").setup()
 
 
 require('onedark').load()
