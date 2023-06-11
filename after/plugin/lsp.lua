@@ -1,3 +1,4 @@
+require("neodev").setup()
 local lspconfig = require('lspconfig')
 
 -- PYTHON
@@ -48,11 +49,15 @@ lspconfig.nil_ls.setup {
 }
 
 -- LUA
+-- TODO: I can use neodev for this?
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
         version = 'LuaJIT',
+      },
+      completion = {
+        callSnippet = "Replace"
       },
       diagnostics = {
         globals = { 'vim' },
