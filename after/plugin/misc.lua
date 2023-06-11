@@ -49,6 +49,7 @@ require('nvim-treesitter.configs').setup {
     strategy = require('ts-rainbow').strategy.global,
   }
 }
+require("flutter-tools").setup {}
 
 -- to execute the function
 -- load_session()
