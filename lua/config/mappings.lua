@@ -156,7 +156,7 @@ m.g.B = { ':!gh browse<cr>', 'browse' }
 m.T.T = { '<cmd>NvimTreeFindFileToggle<cr>', 'toggle tree' }
 
 
-
+-- TODO: clean up and move to other files/directories
 local e = vim.fn.fnameescape
 local dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/")
 local pickers = require "telescope.pickers"
@@ -202,6 +202,7 @@ local load_session = function(opts)
           vim.cmd("silent! source " .. e(file))
         end
       end)
+      -- TODO: have a mapping for deleting a session file
       return true
     end,
   }):find()

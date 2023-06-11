@@ -21,12 +21,16 @@ require("nvim-tree").setup({
   },
 })
 -- TODO: create some of your own status indicators (LSP and such)
+-- local function hello()
+--   return '<cmd>pwd<cr>'
+-- end
 require('lualine').setup {
   options = { section_separators = '', component_separators = '' },
   globalstatus = true,
   sections = {
     lualine_a = {},
-    lualine_b = { 'mode', 'branch', 'diagnostics', 'diff', 'selectioncount' },
+    lualine_b = { 'mode', "vim.fn.fnamemodify(vim.fn.getcwd(), ':t:gs?%?/?:~:r')", 'branch', 'diagnostics', 'diff',
+      'selectioncount' },
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
