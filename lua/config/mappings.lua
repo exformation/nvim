@@ -75,6 +75,7 @@ local m = {
   L = { name = 'Load' },
   T = { name = 'Toggle' },
   S = { name = 'System' },
+  ["<tab>"] = { '<cmd>b#<cr>', 'last buffer' }
 }
 
 m.f.n = { '<cmd>enew<cr>', 'new file' }
