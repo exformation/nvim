@@ -12,6 +12,7 @@ local lspconfig = require('lspconfig')
 --   }
 -- }
 lspconfig.pylsp.setup {
+  single_file_support = true,
   settings = {
     pylsp = {
       plugins = {
@@ -20,10 +21,10 @@ lspconfig.pylsp.setup {
           ignore = { 'W391' },
           maxLineLength = 120
         },
+        autopep8 = {
+          enabled = true,
+        },
         -- TODO: find out which one of these is so annoying and what each one offers
-        -- autopep8 = {
-        --   enabled = true,
-        -- },
         -- pylint = {
         --   enabled = true,
         -- },

@@ -21,9 +21,6 @@ require("nvim-tree").setup({
   },
 })
 -- TODO: create some of your own status indicators (LSP and such)
--- local function hello()
---   return '<cmd>pwd<cr>'
--- end
 require('lualine').setup {
   options = { section_separators = '', component_separators = '' },
   globalstatus = true,
