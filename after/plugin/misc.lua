@@ -26,7 +26,7 @@ require('lualine').setup {
   globalstatus = true,
   sections = {
     lualine_a = {},
-    lualine_b = { 'mode', "vim.fn.fnamemodify(vim.fn.getcwd(), ':t:gs?%?/?:~:r')", 'branch', 'diagnostics', 'diff',
+    lualine_b = { 'mode', "vim.fn.fnamemodify(vim.fn.getcwd(), ':~')", 'branch', 'diagnostics', 'diff',
       'selectioncount' },
     lualine_c = {},
     lualine_x = {},
@@ -55,6 +55,7 @@ require("copilot").setup({
   panel = { enabled = false },
 })
 require("copilot_cmp").setup()
+
 
 
 require('onedark').load()
