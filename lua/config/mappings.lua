@@ -200,6 +200,7 @@ local load_session = function(opts)
         actions.close(prompt_bufnr)
         local file = action_state.get_selected_entry().value[1]
         if vim.fn.filereadable(file) ~= 0 then
+          -- TODO: i have to clear the current session somehow
           vim.cmd("silent! source " .. e(file))
         end
       end)
