@@ -9,9 +9,9 @@ O.expandtab = true
 O.hlsearch = false
 O.ignorecase = true
 -- O.nohlsearch = true
-O.number = true
-O.relativenumber = true
-O.scrolloff = 999
+O.number = false
+-- O.relativenumber = true
+-- O.scrolloff = 999
 O.shiftwidth = 2
 O.signcolumn = 'yes'
 O.smartcase = true
@@ -28,3 +28,13 @@ O.foldmethod = 'expr'
 O.foldexpr = 'nvim_treesitter#foldexpr()'
 -- O.nofoldenable = true
 O.foldlevel = 1
+
+vim.api.nvim_create_augroup("CenterCursor", { clear = true })
+vim.api.nvim_create_autocmd("CursorMoved", {
+  group = "CenterCursor",
+  pattern = "*",
+  command = "normal! zz",
+})
+
+-- vim.api.nvim_exec("autocmd VimEnter * mapclear", false)
+-- vim.api.nvim_exec("autocmd VimEnter * mapclear!", false)
