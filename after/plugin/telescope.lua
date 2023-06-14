@@ -3,6 +3,12 @@
 -- -- See `:help telescope.builtin`
 -- -- TODO: explore telescope extensions (file browsers, gh, etc.)
 require('telescope').setup {
+  defaults = {
+    file_ignore_patterns = {
+      ".*.lock",
+      ".*hardware%-configuration.nix"
+    }
+  }
   --   defaults = {
   --     prompt_prefix = 'test$ ',
   --     mappings = {
@@ -33,4 +39,4 @@ require('telescope').setup {
 }
 -- require('telescope').load_extension('fzf')
 -- require('telescope').load_extension('projects')
-require("telescope").load_extension("flutter")
+-- require("telescope").load_extension("flutter")
