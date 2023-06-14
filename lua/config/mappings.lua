@@ -25,7 +25,7 @@ end
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- TODO: how can i avoid entering normal mode?
-i('<C-z>', '<ESC><C-z>')
+i('<C-z>', "<ESC><C-z>")
 
 n('<A-j>', ':m .+1<CR>')
 n('<A-k>', ':m .-2<CR>')

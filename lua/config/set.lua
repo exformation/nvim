@@ -36,5 +36,8 @@ vim.api.nvim_create_autocmd("CursorMoved", {
   command = "normal! zz",
 })
 
+vim.cmd([[autocmd FocusLost * :wa]])
+vim.cmd([[autocmd BufLeave * :wa]])
+
 -- vim.api.nvim_exec("autocmd VimEnter * mapclear", false)
 -- vim.api.nvim_exec("autocmd VimEnter * mapclear!", false)
