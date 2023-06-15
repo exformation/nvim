@@ -1,3 +1,18 @@
+local status_ok, null_ls = pcall(require, "null-ls")
+if not status_ok then
+  vim.print("Missing null-ls dependency")
+  return
+end
+
+
+F = null_ls.builtins.formatting
+null_ls.setup({
+  sources = {
+    F.nixfmt,
+    F.shfmt,
+  },
+})
+
 require("neodev").setup()
 local lspconfig = require('lspconfig')
 
@@ -39,13 +54,10 @@ lspconfig.pylsp.setup {
 
 -- NIX
 lspconfig.nil_ls.setup {
-  settings = {
-    ['nil'] = {
-      formatting = {
-        command = { "nixfmt" },
-      },
-    },
-  }
+}
+
+-- BASH
+lspconfig.bashls.setup {
 }
 
 -- LUA

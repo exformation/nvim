@@ -39,5 +39,15 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 vim.cmd([[autocmd FocusLost * :wa]])
 vim.cmd([[autocmd BufLeave * :wa]])
 
+-- local autocmd = vim.api.nvim_create_autocmd
+-- local augroup = vim.api.nvim_create_augroup
+-- autocmd("TextYankPost", {
+--   group = augroup("HighlightYank", {}),
+--   pattern = "*",
+--   callback = function()
+--     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 })
+--   end,
+-- })
+
 -- vim.api.nvim_exec("autocmd VimEnter * mapclear", false)
 -- vim.api.nvim_exec("autocmd VimEnter * mapclear!", false)
