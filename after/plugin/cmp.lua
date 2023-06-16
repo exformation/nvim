@@ -10,14 +10,12 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    -- ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
+    ['<C-y>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -26,7 +24,7 @@ cmp.setup {
         fallback()
       end
     end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
+    ['<C-p>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -36,16 +34,23 @@ cmp.setup {
       end
     end, { 'i', 's' }),
   },
-  -- sources = {
-  --   { name = 'nvim_lsp' },
-  --   { name = 'luasnip' },
-  -- },
   sources = {
-    -- Copilot Source
-    { name = "copilot", group_index = 2 },
-    -- Other Sources
-    { name = "nvim_lsp", group_index = 2 },
-    { name = "path", group_index = 2 },
-    { name = "luasnip", group_index = 2 },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "copilot" },
+    { name = "path" },
+    { name = "buffer" },
   },
+  completion = {
+    keyword_length = 0,
+  }
 }
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})

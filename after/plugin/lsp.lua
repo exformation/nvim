@@ -1,33 +1,46 @@
-local status_ok, null_ls = pcall(require, "null-ls")
-if not status_ok then
-  vim.print("Missing null-ls dependency")
-  return
+local get = function(pkg_name)
+  local status_ok, pkg = pcall(require, pkg_name)
+  if not status_ok then
+    vim.print("Missing " .. pkg_name .. " dependency")
+    return nil
+  end
+  return pkg
 end
 
-
-F = null_ls.builtins.formatting
+-- null-ls is needed for LSPs that don't have built-in formatting.
+local null_ls = get("null-ls")
+if not null_ls then
+  return
+end
+local fmt = null_ls.builtins.formatting
 null_ls.setup({
   sources = {
-    F.nixfmt,
-    F.shfmt,
+    fmt.nixfmt,
+    fmt.shfmt,
   },
+  fmt
 })
 
+-- neodev helps with neovim development? try to remove later
+local neodev = get("neodev")
+if not neodev then
+  return
+end
 require("neodev").setup()
-local lspconfig = require('lspconfig')
 
+-- lsp config
+local lspconfig = get('lspconfig')
+if not lspconfig then
+  return
+end
+local cmp_nvim_lsp = get('cmp_nvim_lsp')
+if not cmp_nvim_lsp then
+  return
+end
+local capabilities = cmp_nvim_lsp.default_capabilities()
 -- PYTHON
--- lspconfig.pyright.setup {
---   settings = {
---     python = {
---       formatting = {
---         command = {"black --quiet -"},
---         formatStdin = true
---       },
---     },
---   }
--- }
 lspconfig.pylsp.setup {
+  capabilities = capabilities,
   single_file_support = true,
   settings = {
     pylsp = {
@@ -51,18 +64,17 @@ lspconfig.pylsp.setup {
     }
   }
 }
-
 -- NIX
 lspconfig.nil_ls.setup {
+  capabilities = capabilities,
 }
-
 -- BASH
 lspconfig.bashls.setup {
+  capabilities = capabilities,
 }
-
 -- LUA
--- TODO: I can use neodev for this?
 lspconfig.lua_ls.setup {
+  capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
