@@ -12,4 +12,4 @@ iobuffers.setup({
 local iob = require 'nvim-iobuffers'
 vim.keymap.set('n', "<M-ENTER>", iob.toggle_iobuffers)
 vim.keymap.set('i', "<M-ENTER>", iob.run_command)
-vim.cmd([[autocmd VimEnter * :lua iob.toggle_iobuffers()]])
+vim.cmd([[autocmd VimEnter * :lua require('nvim-iobuffers').toggle_iobuffers()]])
