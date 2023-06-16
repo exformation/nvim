@@ -5,4 +5,11 @@ if not status_ok then
 end
 
 
-iobuffers.setup({})
+iobuffers.setup({
+  -- width = 80
+})
+
+local iob = require 'nvim-iobuffers'
+vim.keymap.set('n', "<M-ENTER>", iob.toggle_iobuffers)
+vim.keymap.set('i', "<M-ENTER>", iob.run_command)
+vim.cmd([[autocmd VimEnter * :lua iob.toggle_iobuffers()]])
