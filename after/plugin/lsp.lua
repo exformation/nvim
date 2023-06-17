@@ -26,7 +26,7 @@ local neodev = get("neodev")
 if not neodev then
   return
 end
-require("neodev").setup()
+neodev.setup()
 
 -- lsp config
 local lspconfig = get('lspconfig')
@@ -96,3 +96,4 @@ lspconfig.lua_ls.setup {
     },
   },
 }
+

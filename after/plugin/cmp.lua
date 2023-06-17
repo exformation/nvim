@@ -5,12 +5,12 @@ luasnip.config.setup {}
 require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup {
-  snippet = {
+  snippet      = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end,
   },
-  mapping = cmp.mapping.preset.insert {
+  mapping      = cmp.mapping.preset.insert {
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<C-y>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -35,16 +35,16 @@ cmp.setup {
       end
     end, { 'i', 's' }),
   },
-  sources = {
+  sources      = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "copilot" },
     { name = "path" },
     { name = "buffer" },
   },
-  completion = {
+  completion   = {
     keyword_length = 0,
-  }
+  },
 }
 
 -- cmp.setup.cmdline(':', {
