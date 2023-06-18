@@ -57,9 +57,9 @@ lspconfig.pylsp.setup {
         -- pylint = {
         --   enabled = true,
         -- },
-        flake8 = {
-          enabled = true,
-        }
+        -- flake8 = {
+        --   enabled = true,
+        -- }
       }
     }
   }
