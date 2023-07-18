@@ -78,13 +78,15 @@ local m = {
   ["<tab>"] = { '<cmd>b#<cr>', 'last buffer' }
 }
 
-m.n.j = { ':exe "e ".strftime("%F").".md" | exe "normal! i" . strftime("%A") . "\\n\\n"<cr>', 'open today\'s journal entry' }
+m.n.j = { ':exe "e ".strftime("%F").".md" | exe "normal! i" . strftime("%A") . "\\n\\n"<cr>',
+  'open today\'s journal entry' }
 function _G.check_directory_and_disable_plugin()
   local current_directory = vim.fn.expand('%:p:h')
   if string.match(current_directory, '/repos/journal') then
     require('cmp').setup { enabled = false }
   end
 end
+
 vim.cmd('autocmd VimEnter * lua check_directory_and_disable_plugin()')
 
 m.f.n = { '<cmd>enew<cr>', 'new file' }

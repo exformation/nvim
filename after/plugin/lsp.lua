@@ -67,6 +67,16 @@ lspconfig.pylsp.setup {
 -- NIX
 lspconfig.nil_ls.setup {
   capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      nix = {
+        flake = {
+          autoEvalInputs = true,
+          autoArchive = true,
+        }
+      }
+    }
+  }
 }
 -- BASH
 lspconfig.bashls.setup {
@@ -96,4 +106,3 @@ lspconfig.lua_ls.setup {
     },
   },
 }
-
