@@ -47,7 +47,7 @@ lspconfig.pylsp.setup {
       plugins = {
         -- TODO: autoimport
         pycodestyle = {
-          ignore = { 'W391' },
+          ignore = { 'W391', 'E241', 'W291', 'E131' },
           maxLineLength = 120
         },
         autopep8 = {
