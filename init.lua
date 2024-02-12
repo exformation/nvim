@@ -12,7 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " "
+O = vim.o
+O.clipboard = 'unnamedplus'
+
+
 require("lazy").setup("plugins")
 
-require("catpuccin").setup()
+require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
