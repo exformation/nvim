@@ -1,4 +1,5 @@
 # TODO
+sessions
 whichkey stuff
 inherit theme from nixos
 save on write
