@@ -10,6 +10,9 @@
           lua-language-server
           stylua
           marksman
+          proselint
+          write-good
+          nodePackages.alex
         ];
       };
     };
