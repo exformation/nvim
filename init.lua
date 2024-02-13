@@ -22,8 +22,8 @@ O.shiftwidth = 2
 O.smartcase = true
 O.tabstop = 2
 O.termguicolors = true
-O.timeout = true
-O.timeoutlen = 0
+-- O.timeout = true
+-- O.timeoutlen = 0
 O.undofile = true
 O.updatetime = 0
 
@@ -41,3 +41,10 @@ require("lazy").setup("plugins")
 
 require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
