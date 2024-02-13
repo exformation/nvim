@@ -22,8 +22,6 @@ O.shiftwidth = 2
 O.smartcase = true
 O.tabstop = 2
 O.termguicolors = true
--- O.timeout = true
--- O.timeoutlen = 0
 O.undofile = true
 O.updatetime = 0
 
