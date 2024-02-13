@@ -32,8 +32,9 @@ vim.api.nvim_create_autocmd("CursorMoved", {
   command = "normal! zz",
 })
 
-vim.cmd([[autocmd FocusLost * :wa]])
-vim.cmd([[autocmd BufLeave * :wa]])
+vim.cmd([[autocmd FocusLost * wa]])
+vim.cmd([[autocmd BufLeave * wa]])
+vim.cmd([[autocmd VimEnter * Neotree filesystem show]])
 
 require("lazy").setup("plugins")
 
@@ -45,4 +46,5 @@ vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>e', ':Neotree filesystem focus<CR>', {})
+vim.keymap.set('n', '<leader>q', ':wqa<CR>', {})
