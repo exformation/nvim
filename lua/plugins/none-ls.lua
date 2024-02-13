@@ -11,6 +11,9 @@ return {
         -- python
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.isort,
+        -- markdown
+
+        -- c#
       },
     }
   end,

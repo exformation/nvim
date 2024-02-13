@@ -12,6 +12,7 @@ return {
     vim.keymap.set('n', '<leader>e', ':Neotree filesystem focus<CR>', {})
     require('neo-tree').setup {
       window = {
+        width = 30,
         mappings = {
           ['P'] = {
             'toggle_preview',

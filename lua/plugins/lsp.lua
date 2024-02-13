@@ -2,9 +2,10 @@ return {
   'neovim/nvim-lspconfig',
   config = function()
     local lspconfig = require 'lspconfig'
-    lspconfig.lua_ls.setup {}
-    lspconfig.nil_ls.setup {}
-    lspconfig.pyright.setup {}
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    lspconfig.lua_ls.setup { capabilities = capabilities }
+    lspconfig.nil_ls.setup { capabilities = capabilities }
+    lspconfig.pyright.setup { capabilities = capabilities }
 
     vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, {})
     vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, {})
