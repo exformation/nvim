@@ -15,7 +15,6 @@ require 'opts'
 require 'keys'
 require 'cmds'
 
-require("lazy").setup("plugins",{
+require("lazy").setup("plugins", {
   change_detection = { enabled = false }
 })
-
