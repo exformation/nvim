@@ -18,6 +18,7 @@ return {
       },
     }
     lspconfig.pyright.setup { capabilities = capabilities }
+    lspconfig.marksman.setup {}
 
     vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, {})
     vim.keymap.set('n', '<leader>ld', vim.lsp.buf.definition, {})
