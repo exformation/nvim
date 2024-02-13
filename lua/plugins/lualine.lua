@@ -4,7 +4,6 @@ return {
   config = function()
     require('lualine').setup({
       options = {
-        theme = 'dracula',
         disabled_filetypes = {
           statusline = {'neo-tree'},
           winbar = {'neo-tree'},
