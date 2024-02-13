@@ -5,5 +5,12 @@ vim.api.nvim_create_autocmd('CursorMoved', {
   command = 'normal! zz',
 })
 
-vim.cmd [[autocmd FocusLost * lua vim.lsp.buf.format({ async = false }); vim.cmd('wa')]]
-vim.cmd [[autocmd BufLeave * lua vim.lsp.buf.format({ async = false }); vim.cmd('wa')]]
+vim.api.nvim_create_autocmd({ 'FocusLost', 'BufLeave', 'VimLeavePre' }, {
+  pattern = '*',
+  callback = function()
+    if vim.lsp.buf.server_ready() then
+      vim.lsp.buf.format { async = false }
+      vim.cmd 'wa'
+    end
+  end,
+})
