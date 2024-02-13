@@ -36,15 +36,10 @@ vim.cmd([[autocmd FocusLost * wa]])
 vim.cmd([[autocmd BufLeave * wa]])
 vim.cmd([[autocmd VimEnter * Neotree filesystem show]])
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins",{
+  change_detection = { enabled = false }
+})
 
-require("catppuccin").setup()
-vim.cmd.colorscheme "catppuccin"
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>e', ':Neotree filesystem focus<CR>', {})
 vim.keymap.set('n', '<leader>q', ':wqa<CR>', {})
+vim.keymap.set('n', '<leader><tab>', ':b#<CR>', {})
