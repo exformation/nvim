@@ -9,6 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require('mason-lspconfig').setup({
+        -- TODO: rely on nixos to have lsp, etc. installed
         ensure_installed = { 'lua_ls', 'pyright' }
       })
     end
@@ -18,6 +19,7 @@ return {
     config = function()
       local lspconfig = require('lspconfig')
       lspconfig.lua_ls.setup({})
+      lspconfig.nil_ls.setup({})
       lspconfig.pyright.setup({})
 
       vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, {})
