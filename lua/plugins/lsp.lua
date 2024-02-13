@@ -9,8 +9,8 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require('mason-lspconfig').setup({
-        -- TODO: rely on nixos to have lsp, etc. installed
-        ensure_installed = { 'lua_ls', 'pyright' }
+        -- rely on nixos to have lsp, etc. installed
+        -- ensure_installed = { 'lua_ls', 'nil_ls', 'pyright' }
       })
     end
   },
