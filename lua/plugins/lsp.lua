@@ -14,10 +14,10 @@ return {
     vim.keymap.set('n', '<leader>lH', vim.lsp.buf.signature_help, {})
     vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, {})
     vim.keymap.set('n', '<leader>lR', vim.lsp.buf.rename, {})
-    vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, {})
     vim.keymap.set('n', '<leader>lr', vim.lsp.buf.references, {})
     vim.keymap.set('n', '<leader>lf', function()
       vim.lsp.buf.format { async = true }
     end, {})
+    vim.keymap.set({ 'n', 'v' }, '<leader>la', vim.lsp.buf.code_action, {})
   end,
 }
