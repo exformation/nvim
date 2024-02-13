@@ -8,7 +8,7 @@ return {
     '3rd/image.nvim',
   },
   config = function()
-    vim.cmd [[autocmd VimEnter * Neotree filesystem show]]
+    --vim.cmd [[autocmd VimEnter * Neotree filesystem show]]
     vim.keymap.set('n', '<leader>e', ':Neotree filesystem focus<CR>', {})
     require('neo-tree').setup {
       window = {
