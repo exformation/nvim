@@ -1,12 +1,15 @@
+-- -- I want to use this because the lens features are basically project management
+-- -- but neotree is a fuck with session management
 -- return {
 --   'rmagatti/auto-session',
 --   config = function()
---     --vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+--     vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 --     -- vim.cmd [[autocmd VimLeavePre * windo Neotree close]]
 --     -- vim.cmd [[autocmd VimEnter * windo Neotree filesystem show]]
 --     require('auto-session').setup {
 --       auto_session_pre_save_cmds = { 'Neotree close' },
 --       auto_session_post_restore_cmds = { 'Neotree filesystem show' },
+--       -- Autosession search
 --     }
 --   end,
 -- }

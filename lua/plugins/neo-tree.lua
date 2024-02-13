@@ -11,6 +11,12 @@ return {
     --vim.cmd [[autocmd VimEnter * Neotree filesystem show]]
     vim.keymap.set('n', '<leader>e', ':Neotree filesystem focus<CR>', {})
     require('neo-tree').setup {
+      sync_root_with_cwd = true,
+      respect_buf_cwd = true,
+      update_focused_file = {
+        enable = true,
+        update_root = true,
+      },
       window = {
         width = 30,
         mappings = {
