@@ -8,7 +8,7 @@ return {
     local dapython = require 'dap-python'
 
     dapui.setup()
-    dapython.setup '/nix/store/qp5zys77biz7imbk6yy85q5pdv7qk84j-python3-3.11.6/bin/python'
+    dapython.setup '/run/current-system/sw/bin/python'
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()

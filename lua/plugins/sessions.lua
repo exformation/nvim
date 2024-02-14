@@ -5,7 +5,8 @@ return {
     vim.keymap.set('n', '<leader>p', require('auto-session.session-lens').search_session)
     require('auto-session').setup {
       pre_save_cmds = { 'Neotree close' },
-      post_restore_cmds = { 'Neotree filesystem show' },
+      -- this should only happen after restoring but it causes problems ...
+      -- post_restore_cmds = { 'Neotree filesystem show' },
     }
   end,
 }
