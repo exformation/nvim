@@ -8,7 +8,7 @@ return {
     '3rd/image.nvim',
   },
   config = function()
-    vim.cmd [[autocmd VimEnter * Neotree filesystem show]]
+    -- vim.cmd [[autocmd VimEnter * Neotree filesystem show]]
     require('neo-tree').setup {
       sync_root_with_cwd = true,
       respect_buf_cwd = true,
