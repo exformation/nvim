@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>q', ':wqa<CR>', {})
+vim.keymap.set('n', '<leader>q', ':wa<CR> | :qa<CR>', {})
 vim.keymap.set('n', '<leader><tab>', ':b#<CR>', {})
 
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
