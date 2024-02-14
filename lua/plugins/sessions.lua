@@ -1,35 +1,16 @@
--- -- I want to use this because the lens features are basically project management
--- -- but neotree is a fuck with session management
--- return {
---   'rmagatti/auto-session',
---   config = function()
---     vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
---     -- vim.cmd [[autocmd VimLeavePre * windo Neotree close]]
---     -- vim.cmd [[autocmd VimEnter * windo Neotree filesystem show]]
---     require('auto-session').setup {
---       auto_session_pre_save_cmds = { 'Neotree close' },
---       auto_session_post_restore_cmds = { 'Neotree filesystem show' },
---       -- Autosession search
---     }
---   end,
--- }
-
 return {
-  'folke/persistence.nvim',
-  opts = {
-    options = { 'blank', 'buffers', 'curdir', 'folds', 'help', 'tabpages', 'winsize', 'winpos', 'terminal', 'localoptions' },
-  },
+  'rmagatti/auto-session',
   config = function()
-    vim.api.nvim_create_autocmd('VimEnter', {
-      group = vim.api.nvim_create_augroup('restore_session', { clear = true }),
-      callback = function()
-        if vim.fn.getcwd() ~= vim.env.HOME then
-          require('persistence').load()
-          vim.cmd [[Neotree filesystem show]]
-        end
-      end,
-      nested = true,
-    })
-    require('persistence').setup()
+    vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
+    vim.cmd [[autocmd VimLeave * windo Neotree close]]
+    vim.api.nvim_set_keymap(
+      'n',
+      '<leader>p',
+      ":Neotree close<CR>:lua require('auto-session.session-lens').search_session()<CR>",
+      { noremap = true, silent = true }
+    )
+    require('auto-session').setup {
+      post_restore_cmds = { 'Neotree filesystem show' },
+    }
   end,
 }

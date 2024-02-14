@@ -13,9 +13,11 @@ return {
         null_ls.builtins.formatting.isort,
         -- markdown
         null_ls.builtins.code_actions.proselint,
-        null_ls.builtins.diagnostics.proselint,
-        null_ls.builtins.diagnostics.alex,
+        -- null_ls.builtins.diagnostics.proselint, -- error
+        -- null_ls.builtins.diagnostics.alex, -- horrible
         null_ls.builtins.diagnostics.write_good,
+        null_ls.builtins.hover.dictionary, -- this is horrible lol
+        null_ls.builtins.formatting.prettierd,
         -- c#
       },
     }
