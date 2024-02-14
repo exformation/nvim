@@ -4,12 +4,14 @@ return {
   config = function()
     require('mini.move').setup()
     require('mini.cursorword').setup {
-      delay = 50,
+      delay = 0,
+      priority = 2,
     }
     require('mini.indentscope').setup {
       draw = {
         delay = 0,
-        priority = 0,
+        animation = require('mini.indentscope').gen_animation.none(),
+        priority = 2,
       },
       mappings = {
         object_scope = 'in',
@@ -20,7 +22,7 @@ return {
       options = {
         border = 'none',
       },
-      symbol = '',
+      symbol = '╎',
     }
   end,
 }
