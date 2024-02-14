@@ -11,6 +11,8 @@ return {
 
     local tsc = require 'telescope.builtin'
     local lsp = vim.lsp.buf
+    local dap = require 'dap'
+    local widgets = require 'dap.ui.widgets'
 
     wk.register({
       s = {
@@ -40,6 +42,7 @@ return {
         b = { tsc.git_branches, 'branches' },
       },
       l = {
+        name = 'lsp',
         R = { tsc.lsp_references, 'references' },
         D = { tsc.lsp_definitions, 'definitions' },
         I = { tsc.lsp_implementations, 'implementations' },
@@ -62,6 +65,54 @@ return {
           end,
           'format',
         },
+      },
+      d = {
+        name = 'dap',
+        c = { dap.continue, 'continue' },
+        o = { dap.step_over, 'step over' },
+        i = { dap.step_into, 'step into' },
+        O = { dap.step_out, 'step out' },
+        b = { dap.toggle_breakpoint, 'toggle breakpoint' },
+        r = { dap.repl.open, 'open repl' },
+        l = { dap.run_last, 'run last' },
+        h = { widgets.hover, 'hover' },
+        p = { widgets.preview, 'preview' },
+        f = {
+          function()
+            widgets.centered_float(widgets.frames)
+          end,
+          'frames',
+        },
+        s = {
+          function()
+            widgets.centered_float(widgets.frames)
+          end,
+          'scopes',
+        },
+      },
+      q = {
+        ':wa<CR> | :qa<CR>',
+        'quit',
+      },
+      P = {
+        require('auto-session.session-lens').search_session,
+        'search sessions',
+      },
+      e = {
+        ':Neotree filesystem focus<CR>',
+        'neotree',
+      },
+      p = {
+        name = 'prev',
+        d = { vim.diagnostic.goto_prev, 'diagnostic' },
+      },
+      n = {
+        name = 'next',
+        d = { vim.diagnostic.goto_next, 'diagnostic' },
+      },
+      ['<tab>'] = {
+        ':b#<CR>',
+        'previous buffer',
       },
     }, { prefix = '<leader>' })
   end,
