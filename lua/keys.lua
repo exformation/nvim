@@ -1,5 +1,6 @@
 vim.keymap.set('n', '<leader>q', ':wa<CR> | :qa<CR>', {})
 vim.keymap.set('n', '<leader><tab>', ':b#<CR>', {})
+vim.keymap.set('t', '<C-S-k>', '<C-\\><C-n>')
 
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
