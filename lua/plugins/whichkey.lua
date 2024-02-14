@@ -95,7 +95,7 @@ return {
           ':wa<CR> | :qa<CR>',
           'quit',
         },
-        P = {
+        o = {
           require('auto-session.session-lens').search_session,
           'search sessions',
         },
