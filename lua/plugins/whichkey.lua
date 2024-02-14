@@ -114,10 +114,16 @@ return {
       J = {
         name = 'next',
         d = { vim.diagnostic.goto_next, 'diagnostic' },
+        -- n = {
+        --   name = 'scope',
+        -- },
       },
       K = {
         name = 'prev',
         d = { vim.diagnostic.goto_prev, 'diagnostic' },
+        -- n = {
+        --   name = 'scope',
+        -- },
       },
     }
   end,
