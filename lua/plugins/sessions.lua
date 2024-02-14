@@ -2,14 +2,9 @@ return {
   'rmagatti/auto-session',
   config = function()
     vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
-    vim.cmd [[autocmd VimLeave * windo Neotree close]]
-    vim.api.nvim_set_keymap(
-      'n',
-      '<leader>p',
-      ":Neotree close<CR>:lua require('auto-session.session-lens').search_session()<CR>",
-      { noremap = true, silent = true }
-    )
+    vim.keymap.set('n', '<leader>p', require('auto-session.session-lens').search_session)
     require('auto-session').setup {
+      pre_save_cmds = { 'Neotree close' },
       post_restore_cmds = { 'Neotree filesystem show' },
     }
   end,
