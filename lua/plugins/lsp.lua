@@ -19,5 +19,6 @@ return {
     }
     lspconfig.pyright.setup { capabilities = capabilities }
     lspconfig.marksman.setup {}
+    lspconfig.csharp_ls.setup {}
   end,
 }
