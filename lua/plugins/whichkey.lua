@@ -114,16 +114,18 @@ return {
       J = {
         name = 'next',
         d = { vim.diagnostic.goto_next, 'diagnostic' },
-        -- n = {
-        --   name = 'scope',
-        -- },
+        n = {
+          [[<Cmd>lua MiniIndentscope.operator('bottom', true)<CR>]],
+          'scope',
+        },
       },
       K = {
         name = 'prev',
         d = { vim.diagnostic.goto_prev, 'diagnostic' },
-        -- n = {
-        --   name = 'scope',
-        -- },
+        n = {
+          [[<Cmd>lua MiniIndentscope.operator('top', true)<CR>]],
+          'scope',
+        },
       },
     }
   end,

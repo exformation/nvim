@@ -1,6 +1,5 @@
 return {
   'echasnovski/mini.nvim',
-  version = '*',
   config = function()
     require('mini.move').setup()
     require('mini.cursorword').setup {
@@ -14,15 +13,17 @@ return {
         priority = 2,
       },
       mappings = {
-        object_scope = 'in',
-        object_scope_with_border = 'an',
-        goto_top = 'Kn',
-        goto_bottom = 'Jn',
+        -- object_scope = 'in',
+        -- object_scope_with_border = 'an',
+        -- goto_top = 'Kn',
+        -- goto_bottom = 'Jn',
       },
       options = {
         border = 'none',
       },
       symbol = '╎',
     }
+    vim.keymap.set({ 'o', 'x' }, 'in', require('mini.indentscope').textobject, { desc = 'scope' })
+    vim.keymap.set({ 'o', 'x' }, 'an', require('mini.indentscope').textobject, { desc = 'scope' })
   end,
 }
