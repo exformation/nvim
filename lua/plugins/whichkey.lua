@@ -92,7 +92,7 @@ return {
           },
         },
         q = {
-          ':wa<CR> | :qa<CR>',
+          ':wa | qa<CR>',
           'quit',
         },
         o = {
