@@ -1,5 +1,6 @@
 # TODO
 
+how to override mini-indentscope name?
 ts objects, indents, etc.
 hop
 
