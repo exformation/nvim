@@ -6,9 +6,9 @@ return {
   build = ':TSUpdate',
   config = function()
     local configs = require 'nvim-treesitter.configs'
-    local ts_repeat_move = require 'nvim-treesitter.textobjects.repeatable_move'
-    vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
-    vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+    local rep = require 'nvim-treesitter.textobjects.repeatable_move'
+    vim.keymap.set({ 'n', 'x', 'o' }, ';', rep.repeat_last_move_next)
+    vim.keymap.set({ 'n', 'x', 'o' }, ',', rep.repeat_last_move_previous)
 
     configs.setup {
       auto_install = true,
