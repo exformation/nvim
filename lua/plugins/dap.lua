@@ -5,10 +5,7 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
     local widgets = require 'dap.ui.widgets'
-    local dapython = require 'dap-python'
-
     dapui.setup()
-    dapython.setup '/run/current-system/sw/bin/python'
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
@@ -22,5 +19,26 @@ return {
     dap.listeners.before.event_exited.dapui_config = function()
       dapui.close()
     end
+
+    -- python (stupid and doesn't work)
+    local dapython = require 'dap-python'
+    dapython.setup '/run/current-system/sw/bin/python'
+
+    -- c# (also need hardcoded paths which is stupid)
+    dap.adapters.coreclr = {
+      type = 'executable',
+      command = '/path/to/dotnet/netcoredbg/netcoredbg',
+      args = { '--interpreter=vscode' },
+    }
+    dap.configurations.cs = {
+      {
+        type = 'coreclr',
+        name = 'launch - netcoredbg',
+        request = 'launch',
+        program = function()
+          return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end,
+      },
+    }
   end,
 }

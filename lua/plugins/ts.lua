@@ -28,6 +28,7 @@ return {
             ['ao'] = { query = '@loop.outer', desc = 'loop' },
             ['af'] = { query = '@call.outer', desc = 'call' },
             ['ap'] = { query = '@parameter.outer', desc = 'parameter' },
+            ['a/'] = { query = '@comment.outer', desc = 'comment' },
 
             -- inside
             ['ic'] = { query = '@class.inner', desc = 'class' },
@@ -37,6 +38,7 @@ return {
             ['io'] = { query = '@loop.inner', desc = 'loop' },
             ['if'] = { query = '@call.inner', desc = 'call' },
             ['ip'] = { query = '@parameter.inner', desc = 'parameter' },
+            ['i/'] = { query = '@comment.outer', desc = 'comment' },
 
             -- left/right
             ['le'] = { query = '@assignment.lhs', desc = 'assignment' },
@@ -63,6 +65,7 @@ return {
             ['Je'] = { query = '@assignment.outer', desc = 'assignment' },
             ['Jf'] = { query = '@call.outer', desc = 'call' },
             ['Jp'] = { query = '@parameter.outer', desc = 'parameter' },
+            ['J/'] = { query = '@comment.outer', desc = 'comment' },
           },
           goto_previous_start = {
             ['Km'] = { query = '@function.outer', desc = 'function' },
@@ -72,6 +75,7 @@ return {
             ['Ke'] = { query = '@assignment.outer', desc = 'assignment' },
             ['Kf'] = { query = '@call.outer', desc = 'call' },
             ['Kp'] = { query = '@parameter.outer', desc = 'parameter' },
+            ['K/'] = { query = '@comment.outer', desc = 'comment' },
           },
         },
       },

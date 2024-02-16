@@ -3,7 +3,7 @@ return {
   event = 'VeryLazy',
   init = function()
     vim.o.timeout = true
-    vim.o.timeoutlen = 0
+    vim.o.timeoutlen = 50
   end,
   opts = {},
   config = function()
@@ -56,10 +56,10 @@ return {
           h = { lsp.hover, 'hover' },
           i = { lsp.implementation, 'implementation' },
           s = { lsp.signature_help, 'signature_help' },
-          t = { lsp.type_definition, 'type_definition' },
+          t = { lsp.type_definition, 'type definition' },
           n = { lsp.rename, 'rename' },
           r = { lsp.references, 'references' },
-          a = { lsp.code_action, 'code_action' },
+          a = { lsp.code_action, 'code action' },
           f = {
             function()
               lsp.format { async = true }
