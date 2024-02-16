@@ -8,8 +8,10 @@ vim.api.nvim_create_autocmd('CursorMoved', {
 vim.api.nvim_create_autocmd({ 'FocusLost', 'BufLeave', 'VimLeavePre' }, {
   pattern = '*',
   callback = function()
-    if vim.lsp.buf.server_ready() then
-      vim.lsp.buf.format { async = false }
+    if vim.bo.modified then
+      if vim.lsp.buf.server_ready() then
+        vim.lsp.buf.format { async = false }
+      end
       if vim.bo.modifiable then
         vim.cmd 'write'
       end

@@ -1,3 +1,4 @@
+-- TODO: you removed paragraph dumby
 return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
