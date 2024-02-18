@@ -1,12 +1,8 @@
 # TODO
 
-dap uses hardcoded paths which is stupid
-c# lsp, etc.
-
-lazygit
-
-luasnip
 copilot
-neotest <leader>t ?
+lazygit
+luasnip
 
-inherit theme from nixos
+dap uses hardcoded paths which is stupid
+neotest <leader>t ?
