@@ -10,4 +10,5 @@ O.smartcase = true
 O.tabstop = 2
 O.termguicolors = true
 O.undofile = true
-O.updatetime = 0
+-- O.updatetime = 0
+O.hlsearch = false
