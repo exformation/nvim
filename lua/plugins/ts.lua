@@ -1,4 +1,5 @@
 -- TODO: you removed paragraph dumby
+-- JK should work in visual
 return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
@@ -28,7 +29,7 @@ return {
             ['ai'] = { query = '@conditional.outer', desc = 'if' },
             ['ao'] = { query = '@loop.outer', desc = 'loop' },
             ['af'] = { query = '@call.outer', desc = 'call' },
-            ['ap'] = { query = '@parameter.outer', desc = 'parameter' },
+            ['aa'] = { query = '@parameter.outer', desc = 'arg' },
             ['a/'] = { query = '@comment.outer', desc = 'comment' },
 
             -- inside
@@ -38,7 +39,7 @@ return {
             ['ii'] = { query = '@conditional.inner', desc = 'if' },
             ['io'] = { query = '@loop.inner', desc = 'loop' },
             ['if'] = { query = '@call.inner', desc = 'call' },
-            ['ip'] = { query = '@parameter.inner', desc = 'parameter' },
+            ['ia'] = { query = '@parameter.inner', desc = 'arg' },
             ['i/'] = { query = '@comment.outer', desc = 'comment' },
 
             -- left/right
@@ -49,10 +50,10 @@ return {
         swap = {
           enable = true,
           swap_next = {
-            ['JP'] = { query = '@parameter.inner', desc = 'swap parameter' },
+            ['JA'] = { query = '@parameter.inner', desc = 'swap arg' },
           },
           swap_previous = {
-            ['KP'] = { query = '@parameter.inner', desc = 'swap parameter' },
+            ['KA'] = { query = '@parameter.inner', desc = 'swap arg' },
           },
         },
         move = {
@@ -65,7 +66,7 @@ return {
             ['Jo'] = { query = '@loop.outer', desc = 'loop' },
             ['Je'] = { query = '@assignment.outer', desc = 'assignment' },
             ['Jf'] = { query = '@call.outer', desc = 'call' },
-            ['Jp'] = { query = '@parameter.outer', desc = 'parameter' },
+            ['Ja'] = { query = '@parameter.outer', desc = 'arg' },
             ['J/'] = { query = '@comment.outer', desc = 'comment' },
           },
           goto_previous_start = {
@@ -75,7 +76,7 @@ return {
             ['Ko'] = { query = '@loop.outer', desc = 'loop' },
             ['Ke'] = { query = '@assignment.outer', desc = 'assignment' },
             ['Kf'] = { query = '@call.outer', desc = 'call' },
-            ['Kp'] = { query = '@parameter.outer', desc = 'parameter' },
+            ['Ka'] = { query = '@parameter.outer', desc = 'arg' },
             ['K/'] = { query = '@comment.outer', desc = 'comment' },
           },
         },
