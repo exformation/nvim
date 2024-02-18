@@ -2,6 +2,7 @@ return {
   'echasnovski/mini.nvim',
   config = function()
     require('mini.move').setup()
+    -- TODO: lsp can do this
     require('mini.cursorword').setup {
       delay = 0,
       priority = 2,

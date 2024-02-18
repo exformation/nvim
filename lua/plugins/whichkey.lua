@@ -55,7 +55,7 @@ return {
           c = { lsp.declaration, 'declaration' },
           h = { lsp.hover, 'hover' },
           i = { lsp.implementation, 'implementation' },
-          s = { lsp.signature_help, 'signature_help' },
+          s = { lsp.signature_help, 'signature help' },
           t = { lsp.type_definition, 'type definition' },
           n = { lsp.rename, 'rename' },
           r = { lsp.references, 'references' },
@@ -65,6 +65,11 @@ return {
               lsp.format { async = true }
             end,
             'format',
+          },
+          -- LspInfo
+          ['?'] = {
+            ':LspInfo<CR>',
+            'info',
           },
         },
         d = {
@@ -90,6 +95,10 @@ return {
             end,
             'scopes',
           },
+        },
+        r = {
+          name = 'run',
+          d = { dap.run, 'run' },
         },
         q = {
           ':wa | qa<CR>',

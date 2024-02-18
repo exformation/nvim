@@ -4,8 +4,9 @@ return {
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
-    local widgets = require 'dap.ui.widgets'
     dapui.setup()
+
+    require('dap.ext.vscode').json_decode = require('overseer.json').decode
 
     dap.listeners.before.attach.dapui_config = function()
       dapui.open()
