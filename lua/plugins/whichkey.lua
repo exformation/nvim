@@ -68,7 +68,7 @@ return {
           },
           -- LspInfo
           ['?'] = {
-            ':LspInfo<CR>',
+            ':LspInfo<cr>',
             'info',
           },
         },
@@ -98,10 +98,10 @@ return {
         },
         r = {
           name = 'run',
-          d = { dap.run, 'run' },
+          d = { ':Overseer run<cr>', 'run' },
         },
         q = {
-          ':wa | qa<CR>',
+          ':wa | qa<cr>',
           'quit',
         },
         o = {
@@ -109,14 +109,14 @@ return {
           'search sessions',
         },
         e = {
-          ':Neotree filesystem focus<CR>',
+          ':Neotree filesystem focus<cr>',
           'neotree',
         },
         t = {
           name = 'treesitter',
         },
         ['<tab>'] = {
-          ':b#<CR>',
+          ':b#<cr>',
           'previous buffer',
         },
       },
@@ -124,7 +124,7 @@ return {
         name = 'next',
         d = { vim.diagnostic.goto_next, 'diagnostic' },
         n = {
-          [[<Cmd>lua MiniIndentscope.operator('bottom', true)<CR>]],
+          [[<cmd>lua MiniIndentscope.operator('bottom', true)<cr>]],
           'scope',
         },
       },
@@ -132,7 +132,7 @@ return {
         name = 'prev',
         d = { vim.diagnostic.goto_prev, 'diagnostic' },
         n = {
-          [[<Cmd>lua MiniIndentscope.operator('top', true)<CR>]],
+          [[<cmd>lua MiniIndentscope.operator('top', true)<cr>]],
           'scope',
         },
       },
