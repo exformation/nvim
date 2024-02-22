@@ -3,6 +3,7 @@
 file + ts hints
 lazygit
 luasnip binds
+replace variable with its value
 
 dap uses hardcoded paths which is stupid
 neotest <leader>t ?
