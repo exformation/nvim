@@ -16,3 +16,8 @@ lua/plugins/flash-hints/init.lua
 cd ~/repos/flash-hints
 v -c "set rtp+=./" lua/flash-hints/init.lua
 ```
+
+
+why can't I do ysre( ?
+vregS( works
+S doesn't work (being overridden)

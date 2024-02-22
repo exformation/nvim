@@ -4,7 +4,7 @@ return {
     'folke/neodev.nvim',
   },
   config = function()
-    -- plugins = { flash-hints, ... }
+    -- my_plugins = { flash-hints, ... }
     require('neodev').setup {
       override = function(root_dir, library)
         if root_dir:find('/home/exform/repos/flash-hints', 1, true) == 1 then
@@ -31,7 +31,7 @@ return {
       },
     }
     lspconfig.pyright.setup { capabilities = capabilities }
-    lspconfig.marksman.setup {}
-    lspconfig.csharp_ls.setup {}
+    lspconfig.marksman.setup { capabilities = capabilities }
+    lspconfig.csharp_ls.setup { capabilities = capabilities }
   end,
 }
