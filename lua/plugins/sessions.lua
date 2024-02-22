@@ -7,5 +7,6 @@ return {
       -- this should only happen after restoring but it causes problems ...
       -- post_restore_cmds = { 'Neotree filesystem show' },
     }
+
   end,
 }
