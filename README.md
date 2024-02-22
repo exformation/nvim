@@ -24,3 +24,4 @@ S doesn't work (being overridden)
 
 delete all comments in a file/object
 delete all empty lines
+cid (change inner diagnostic)

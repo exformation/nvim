@@ -10,6 +10,5 @@ end, { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>f', function()
   package.loaded['file-hints'] = nil
-  require('file-hints').test()
+  require('file-hints').toggle_buffer()
 end, { noremap = true, silent = true })
-
