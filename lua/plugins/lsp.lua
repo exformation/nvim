@@ -4,12 +4,14 @@ return {
     'folke/neodev.nvim',
   },
   config = function()
-    -- my_plugins = { flash-hints, ... }
+    my_plugins = { 'ts-hints', 'file-hints' }
     require('neodev').setup {
       override = function(root_dir, library)
-        if root_dir:find('/home/exform/repos/flash-hints', 1, true) == 1 then
-          library.enabled = true
-          library.plugins = true
+        for _, plugin in ipairs(my_plugins) do
+          if root_dir:find('/home/exform/repos/' .. plugin, 1, true) == 1 then
+            library.enabled = true
+            library.plugins = true
+          end
         end
       end,
     }

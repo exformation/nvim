@@ -4,6 +4,12 @@ vim.keymap.set('n', 'J', '<nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'K', '<nop>', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>t', function()
-  package.loaded['flash-hints'] = nil
-  require('flash-hints').select()
+  package.loaded['ts-hints'] = nil
+  require('ts-hints').select()
 end, { noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>f', function()
+  package.loaded['file-hints'] = nil
+  require('file-hints').select()
+end, { noremap = true, silent = true })
+
