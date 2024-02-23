@@ -13,6 +13,9 @@ return {
     vim.keymap.set({ 'n', 'x', 'o' }, ',', rep.repeat_last_move_previous)
 
     configs.setup {
+      ensure_installed = {},
+      ignore_install = {},
+      modules = {},
       auto_install = true,
       sync_install = false,
       highlight = { enable = true },
@@ -40,7 +43,7 @@ return {
             ['io'] = { query = '@loop.inner', desc = 'loop' },
             ['if'] = { query = '@call.inner', desc = 'call' },
             ['ia'] = { query = '@parameter.inner', desc = 'arg' },
-            ['i/'] = { query = '@comment.outer', desc = 'comment' },
+            ['i/'] = { query = '@comment.inner', desc = 'comment' },
 
             -- left/right
             ['le'] = { query = '@assignment.lhs', desc = 'assignment' },

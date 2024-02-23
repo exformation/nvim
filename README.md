@@ -2,7 +2,6 @@
 
 ```
 file + ts hints
-lazygit
 luasnip binds
 replace variable with its value
 
@@ -16,7 +15,7 @@ why can't I do ysre( ?
 vregS( works
 S doesn't work (being overridden)
 
-delete all comments in a file/object
+delete all comments in a file/object  da/ repeated
 delete all empty lines
 cid (change inner diagnostic)
 ```

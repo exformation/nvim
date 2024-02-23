@@ -24,7 +24,7 @@ return {
       },
       symbol = '╎',
     }
-    vim.keymap.set({ 'o', 'x' }, 'in', require('mini.indentscope').textobject, { desc = 'scope' })
-    vim.keymap.set({ 'o', 'x' }, 'an', require('mini.indentscope').textobject, { desc = 'scope' })
+    vim.keymap.set({ 'o', 'x' }, 'in', function() require('mini.indentscope').textobject(false) end, { desc = 'scope' })
+    vim.keymap.set({ 'o', 'x' }, 'an', function() require('mini.indentscope').textobject(true) end, { desc = 'scope' })
   end,
 }
