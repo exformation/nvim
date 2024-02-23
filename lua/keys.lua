@@ -15,6 +15,7 @@ end, { noremap = true, silent = true })
 
 -- experimenting with shenanigans
 -- deleting blank lines in an object like a method doesn't work but it does for indent (because it's a line?)
+-- <leader>Din works but <leader>Dif doesn't
 vim.keymap.set('x', '<leader>f', ":<C-u>'<,'>g/^$/d<CR>", { noremap = true, silent = true })
 
 vim.g.DeleteBlankLinesOp = function(type)
