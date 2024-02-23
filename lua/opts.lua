@@ -1,4 +1,5 @@
 vim.g.mapleader = ' '
+-- this said vim.o should be avoided and I should use vim.opt?? https://www.youtube.com/watch?v=Cp0iap9u29c
 O = vim.opt
 O.clipboard = 'unnamedplus'
 O.expandtab = true
