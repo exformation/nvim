@@ -1,5 +1,5 @@
 ; random learning
 ((indented_string_expression
-  (string_fragment) @first-fragment)
- (#match? @first-fragment "^--lua")
+  (string_fragment) @s)
+ (#match? @s "^--lua")
  (#set! language "lua"))
