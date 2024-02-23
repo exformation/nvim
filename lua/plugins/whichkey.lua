@@ -14,7 +14,7 @@ return {
     local dap = require 'dap'
     local widgets = require 'dap.ui.widgets'
 
-    -- TODO: this should probably go somewhere else (require(myterminal))
+    -- TODO: this should probably go somewhere else (require(myterminal) idk)
     local Terminal = require('toggleterm.terminal').Terminal
     local lazygit = Terminal:new {
       cmd = 'lazygit',
