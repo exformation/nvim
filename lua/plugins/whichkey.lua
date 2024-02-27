@@ -122,12 +122,16 @@ return {
           require('auto-session.session-lens').search_session,
           'search sessions',
         },
-        e = {
-          ':Neotree filesystem focus<cr>',
-          'neotree',
-        },
+        -- e = {
+        --   ':Neotree filesystem focus<cr>',
+        --   'neotree',
+        -- },
         t = {
           name = 'treesitter',
+        },
+        ['-'] = {
+          ':Oil<cr>',
+          'oil'
         },
         ['<tab>'] = {
           ':b#<cr>',

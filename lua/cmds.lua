@@ -2,7 +2,11 @@ vim.api.nvim_create_augroup('CenterCursor', { clear = true })
 vim.api.nvim_create_autocmd('CursorMoved', {
   group = 'CenterCursor',
   pattern = '*',
-  command = 'normal! zz',
+  callback = function()
+    if vim.api.nvim_buf_get_option(0, 'buftype') == '' then
+      vim.api.nvim_exec('normal! zz', false)
+    end
+  end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
