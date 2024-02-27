@@ -1,6 +1,7 @@
 # TODO
 
 ```
+filter out test files in search
 file + ts hints
 luasnip binds
 replace variable with its value
