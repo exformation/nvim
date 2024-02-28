@@ -14,6 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require 'opts'
 require 'keys'
 require 'cmds'
+require 'globals'
 
 require('lazy').setup('plugins', {
   change_detection = { enabled = false },

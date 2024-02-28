@@ -118,20 +118,16 @@ return {
           ':wa | qa<cr>',
           'quit',
         },
-        o = {
-          require('auto-session.session-lens').search_session,
-          'search sessions',
+        x = {
+          ':q<cr>',
+          'close buffer',
         },
-        -- e = {
-        --   ':Neotree filesystem focus<cr>',
-        --   'neotree',
-        -- },
         t = {
           name = 'treesitter',
         },
         ['-'] = {
           ':Oil<cr>',
-          'oil'
+          'oil',
         },
         ['<tab>'] = {
           ':b#<cr>',
