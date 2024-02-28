@@ -1,7 +1,9 @@
 return {
   dir = '/home/exform/repos/file-hints.nvim',
   config = function()
-    require('file-hints').setup()
+    require('file-hints').setup {
+      a = 2,
+    }
 
     vim.keymap.set('n', '<leader>f', function()
       package.loaded['file-hints'] = nil
