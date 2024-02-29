@@ -4,9 +4,9 @@ return {
     'nvim-lua/plenary.nvim',
   },
   config = function()
-    require('file-hints').setup {
-      a = 2,
-    }
+    -- require('file-hints').setup {
+    --   prefix = '<leader>m',
+    -- }
 
     vim.keymap.set('n', '<leader>f', function()
       package.loaded['file-hints'] = nil
