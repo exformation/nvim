@@ -6,8 +6,8 @@ return {
       options = {
         disabled_filetypes = {
           -- TODO: why no work for dap
-          winbar = { 'neo-tree', 'dapui-watches', 'dapui-stacks', 'dapui-scopes', 'dapui-breakpoints', 'dap-repl', 'dapui-console' },
-          statusline = { 'neo-tree' },
+          -- winbar = { 'neo-tree', 'dapui-watches', 'dapui-stacks', 'dapui-scopes', 'dapui-breakpoints', 'dap-repl', 'dapui-console' },
+          -- statusline = { 'neo-tree' },
         },
       },
     }
