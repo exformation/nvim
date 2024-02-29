@@ -5,6 +5,7 @@ return {
   },
   config = function()
     require('neodev').setup {
+      -- plugins = true,
       override = function(root_dir, library)
         for _, plugin in ipairs({ 'ts-hints.nvim', 'file-hints.nvim' }) do
           if root_dir:find('~/repos/' .. plugin, 1, true) == 1 then

@@ -3,7 +3,13 @@ vim.keymap.set({ 't', 'i' }, 'kj', [[<c-\><c-n>]])
 vim.keymap.set('n', 'J', '<nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'K', '<nop>', { noremap = true, silent = true })
 
+-- plugin dev (TODO: put these with whichkey?)
 vim.keymap.set('n', '<leader>t', [[:w | source %<cr>]])
+vim.keymap.set('n', '<leader>T', [[<Plug>PlenaryTestFile<cr>]])
+
+-- put in telescope.lua?
+vim.keymap.set('c', '<c-r>', [[<Plug>(TelescopeFuzzyCommandSearch)]])
+
 -- vim.keymap.set('n', '<leader>t', function()
 --   package.loaded['ts-hints'] = nil
 --   require('ts-hints').select()

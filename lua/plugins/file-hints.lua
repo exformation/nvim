@@ -1,5 +1,8 @@
 return {
   dir = '/home/exform/repos/file-hints.nvim',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+  },
   config = function()
     require('file-hints').setup {
       a = 2,
