@@ -1,6 +1,7 @@
 vim.api.nvim_create_augroup('CenterCursor', { clear = true })
 vim.api.nvim_create_augroup('FormatBuffer', { clear = true })
 vim.api.nvim_create_augroup('WriteBuffer', { clear = true })
+vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 
 vim.api.nvim_create_autocmd('CursorMoved', {
   group = 'CenterCursor',
@@ -32,5 +33,13 @@ vim.api.nvim_create_autocmd({ 'FocusLost' }, {
     if vim.bo.buftype == '' and vim.bo.modified and vim.bo.modifiable then
       vim.cmd 'write'
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = 'YankHighlight',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { timeout = 200 }
   end,
 })
