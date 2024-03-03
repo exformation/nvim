@@ -1,4 +1,7 @@
 vim.api.nvim_create_augroup('CenterCursor', { clear = true })
+vim.api.nvim_create_augroup('FormatBuffer', { clear = true })
+vim.api.nvim_create_augroup('WriteBuffer', { clear = true })
+
 vim.api.nvim_create_autocmd('CursorMoved', {
   group = 'CenterCursor',
   pattern = '*',
@@ -10,6 +13,7 @@ vim.api.nvim_create_autocmd('CursorMoved', {
 })
 
 vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
+  group = 'FormatBuffer',
   pattern = '*',
   callback = function()
     if vim.bo.buftype == '' and vim.bo.modified and vim.bo.modifiable then
@@ -22,6 +26,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'FocusLost' }, {
+  group = 'WriteBuffer',
   pattern = '*',
   callback = function()
     if vim.bo.buftype == '' and vim.bo.modified and vim.bo.modifiable then

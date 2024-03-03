@@ -5,10 +5,12 @@ return {
   },
   config = function()
     require('neodev').setup {
-      -- plugins = true,
+      library = {
+        plugins = { 'nvim-treesitter', 'plenary.nvim', 'telescope.nvim' },
+      },
       -- override = function(root_dir, library)
       --   for _, plugin in ipairs({ 'ts-hints.nvim', 'file-hints.nvim' }) do
-      --     if root_dir:find('~/repos/' .. plugin, 1, true) == 1 then
+      --     if root_dir:find('repos/' .. plugin, 1, true) == 1 then
       --       library.enabled = true
       --       library.plugins = true
       --     end
