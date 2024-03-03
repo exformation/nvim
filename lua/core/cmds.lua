@@ -4,16 +4,18 @@ vim.api.nvim_create_augroup('WriteBuffer', { clear = true })
 vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 
 vim.api.nvim_create_autocmd('CursorMoved', {
+  desc = 'Center the cursor when moving',
   group = 'CenterCursor',
   pattern = '*',
   callback = function()
-    if vim.api.nvim_buf_get_option(0, 'buftype') == '' then
-      vim.api.nvim_exec('normal! zz', false)
+    if vim.bo.buftype == '' then
+      vim.cmd [[normal! zz]]
     end
   end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
+  desc = 'Format the buffer before leaving',
   group = 'FormatBuffer',
   pattern = '*',
   callback = function()
@@ -27,6 +29,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
 })
 
 vim.api.nvim_create_autocmd({ 'FocusLost' }, {
+  desc = 'Write the buffer when focus is lost',
   group = 'WriteBuffer',
   pattern = '*',
   callback = function()
@@ -37,6 +40,7 @@ vim.api.nvim_create_autocmd({ 'FocusLost' }, {
 })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight the yanked text',
   group = 'YankHighlight',
   pattern = '*',
   callback = function()
