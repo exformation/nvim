@@ -26,6 +26,12 @@ return {
       ['<leader>'] = {
         s = {
           name = 'search',
+          s = {
+            function()
+              tsc.find_files { find_command = { 'sh', '-c', "rg '' --files-with-matches" } }
+            end,
+            'text files',
+          },
           f = { tsc.find_files, 'files' },
           g = { tsc.live_grep, 'grep' },
           b = { tsc.buffers, 'buffers' },
