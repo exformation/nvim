@@ -45,6 +45,7 @@ return {
           t = { tsc.treesitter, 'treesitter' },
           C = { tsc.colorscheme, 'colorscheme' },
           d = { tsc.diagnostics, 'dianostics' },
+          r = { tsc.resume, 'resume' },
           h = {
             c = { tsc.command_history, 'command history' },
             s = { tsc.search_history, 'search history' },
@@ -64,7 +65,6 @@ return {
         },
         l = {
           name = 'lsp',
-          R = { tsc.lsp_references, 'references' },
           D = { tsc.lsp_definitions, 'definitions' },
           I = { tsc.lsp_implementations, 'implementations' },
           S = { tsc.lsp_document_symbols, 'doc symbols' },
@@ -78,7 +78,14 @@ return {
           s = { lsp.signature_help, 'signature help' },
           t = { lsp.type_definition, 'type definition' },
           n = { lsp.rename, 'rename' },
-          r = { lsp.references, 'references' },
+          r = {
+            function()
+              tsc.lsp_references {
+                show_line = false,
+              }
+            end,
+            'references',
+          },
           a = { lsp.code_action, 'code action' },
           f = {
             function()

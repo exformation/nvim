@@ -57,3 +57,8 @@ return {
     end,
   },
 }
+
+-- TODO: have a picker/action for opening links in a buffer
+-- TODO: also just make a bind for opening links that you're on or near
+--   links should be a text object and opening them should be a motion
+-- TODO: look at the doom emacs picker for ideas
