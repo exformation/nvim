@@ -69,7 +69,7 @@ return {
           I = { tsc.lsp_implementations, 'implementations' },
           S = { tsc.lsp_document_symbols, 'doc symbols' },
           W = { tsc.lsp_workspace_symbols, 'workspace symbols' },
-          T = { tsc.lsp_type_definitions, ' types' },
+          T = { tsc.lsp_type_definitions, 'types' },
 
           d = { lsp.definition, 'definition' },
           c = { lsp.declaration, 'declaration' },

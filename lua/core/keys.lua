@@ -4,7 +4,7 @@ vim.keymap.set('n', 'J', '<nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'K', '<nop>', { noremap = true, silent = true })
 
 -- plugin dev (TODO: put these with whichkey?)
-vim.keymap.set('n', '<leader>t', [[:w | source %<cr>]])
+vim.keymap.set('n', '<leader>t', [[:w | source %<cr>]], { desc = 'source current file' })
 vim.keymap.set('n', '<leader>T', [[<Plug>PlenaryTestFile<cr>]])
 
 -- put in telescope.lua?
