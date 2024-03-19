@@ -47,6 +47,7 @@ return {
           d = { tsc.diagnostics, 'dianostics' },
           r = { tsc.resume, 'resume' },
           h = {
+            name = 'history',
             c = { tsc.command_history, 'command history' },
             s = { tsc.search_history, 'search history' },
           },
@@ -147,6 +148,7 @@ return {
           'previous buffer',
         },
       },
+      -- next: hunk, 
       J = {
         name = 'next',
         d = { vim.diagnostic.goto_next, 'diagnostic' },

@@ -14,22 +14,41 @@
 --     end, { desc = 'file hints', noremap = true, silent = true })
 --   end,
 -- }
+-- return {
+--   dir = '/home/exform/repos/nvim-plugins/isr.nvim',
+--   dependencies = {
+--     'nvim-lua/plenary.nvim',
+--   },
+--   config = function()
+--     -- require('isr').setup {
+--     --   prefix = '<C-e>',
+--     -- }
+--
+--     vim.keymap.set('n', '<leader>f', function()
+--       package.loaded['isr'] = nil
+--       require('isr').setup {
+--         jump_prefix = '<c-g>',
+--         insert_prefix = '<c-i>',
+--       }
+--     end, { desc = 'isr', noremap = true, silent = true })
+--   end,
+-- }
 return {
-  dir = '/home/exform/repos/nvim-plugins/isr.nvim',
+  dir = '/home/exform/repos/nvim-plugins/prsr.nvim',
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
   config = function()
-    -- require('isr').setup {
+    -- require('prsr').setup {
     --   prefix = '<C-e>',
     -- }
 
     vim.keymap.set('n', '<leader>f', function()
-      package.loaded['isr'] = nil
-      require('isr').setup {
-        jump_prefix = '<c-g>',
-        insert_prefix = '<c-i>',
+      package.loaded['prsr'] = nil
+      require('prsr').setup {
+        what = 3,
+        who = 5,
       }
-    end, { desc = 'isr', noremap = true, silent = true })
+    end, { desc = 'prsr', noremap = true, silent = true })
   end,
 }

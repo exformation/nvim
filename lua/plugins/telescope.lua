@@ -27,6 +27,20 @@ return {
         return entries
       end
 
+      -- TODO: i can't make this work, that key isn't real
+      local ignore_tests = true
+      local function toggle_ignore_patterns(bufnr)
+        local config = require('telescope.config').values
+        P(vim.tbl_keys(config))
+        if ignore_tests then
+          config.file_ignore_patterns = { 'test', 'Test' }
+        else
+          config.file_ignore_patterns = {}
+        end
+        as.get_current_picker(bufnr):refresh()
+        ignore_tests = not ignore_tests
+      end
+
       require('telescope').setup {
         defaults = {
           mappings = {
@@ -37,6 +51,7 @@ return {
                 print(vim.inspect(entries))
                 actions.close(bufnr)
               end,
+              ['<c-t>'] = toggle_ignore_patterns,
             },
           },
         },
