@@ -1,0 +1,7 @@
+clean up unused plugins 
+
+learn existing plugins more
+
+from-scratch binds
+
+interesting: https://www.youtube.com/watch?v=zIOOLZJb87U

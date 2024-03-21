@@ -46,8 +46,7 @@ return {
     vim.keymap.set('n', '<leader>f', function()
       package.loaded['prsr'] = nil
       require('prsr').setup {
-        what = 3,
-        who = 5,
+        logger = true,
       }
     end, { desc = 'prsr', noremap = true, silent = true })
   end,
