@@ -5,4 +5,7 @@ learn existing plugins more
 from-scratch binds
 
 potential additions/inspirations:
-switch: https://www.youtube.com/watch?v=zIOOLZJb87U
+- custom code actions/transformations w/ TS
+-- switch: https://www.youtube.com/watch?v=zIOOLZJb87U
+-- null-ls: https://www.youtube.com/watch?v=q-oBU2fO1H4
+

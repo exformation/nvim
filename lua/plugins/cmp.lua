@@ -41,6 +41,7 @@ return {
       },
     })
 
+    -- FIX: c-p/c-n complete this instead of navigating history which infuriates me because it's only sometimes
     -- cmp.setup.cmdline(':', {
     --   mapping = cmp.mapping.preset.cmdline(),
     --   sources = cmp.config.sources({
