@@ -87,3 +87,42 @@ return {
     }
   end,
 }
+-- plugin that shows a list of all text objects that are valid for the file and highlights them
+--[
+-- inner/around/next/prev/first/last (repeatable)(surroundable)
+-- select/swap/move
+-- cci -> change condition of if statement? 
+-- cbi -> change body of if statement?
+-- hjkl
+-- word cases
+-- noun/verb/adjective/adverb
+-- operator (left/right/inner/around)
+-- function/method
+-- class/struct/enum/union/namespace/module/package/object
+-- condition/if/else/switch/try/catch/finally
+-- loop/for/while/do/foreach
+-- parameter/argument
+-- assignment/declaration/initialization
+-- comment
+-- call/invocation
+-- string/character/number/boolean
+-- file
+-- statement
+-- expression
+-- sentence/paragraph
+-- word/character/line
+-- block/parenthesis/bracket/brace
+-- list/array/vector
+-- pair/key/value/property/attribute/field
+-- quote
+-- tag/element/attribute
+-- header/source
+-- body/footer
+-- git/hunk/diff
+-- diagnostic/error/warning/hint/info
+-- indent/blanklines
+-- universe (whole file)
+--
+-- easy way to delete all matching? 
+--
+--]

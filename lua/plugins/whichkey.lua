@@ -148,7 +148,7 @@ return {
           'previous buffer',
         },
       },
-      -- next: hunk, 
+      -- next: hunk,
       J = {
         name = 'next',
         d = { vim.diagnostic.goto_next, 'diagnostic' },
