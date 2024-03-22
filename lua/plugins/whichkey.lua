@@ -19,7 +19,7 @@ return {
     local lazygit = Terminal:new {
       cmd = 'lazygit',
       dir = 'git_dir',
-      direction = 'float',
+      direction = 'tab',
     }
 
     wk.register {
