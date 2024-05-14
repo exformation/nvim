@@ -8,7 +8,7 @@ return {
       library = {
         plugins = { 'nvim-treesitter', 'plenary.nvim', 'telescope.nvim' },
       },
-      -- override = function(root_dir, library)
+      -- override = functionoot_dir, library)
       --   for _, plugin in ipairs({ 'ts-hints.nvim', 'file-hints.nvim' }) do
       --     if root_dir:find('repos/' .. plugin, 1, true) == 1 then
       --       library.enabled = true
@@ -35,7 +35,19 @@ return {
       },
     }
     lspconfig.pyright.setup { capabilities = capabilities }
-    lspconfig.marksman.setup { capabilities = capabilities }
+    -- lspconfig.marksman.setup { capabilities = capabilities }
     lspconfig.csharp_ls.setup { capabilities = capabilities }
+    lspconfig.rust_analyzer.setup {
+      capabilities = capabilities,
+      -- settings = {
+      --   ['rust-analyzer'] = {
+      --     cargo = {
+      --       extraEnv = {
+      --         RUSTFLAGS = '-Clinker=clang -Clink-arg=-fuse-ld=lld',
+      --       },
+      --     },
+      --   },
+      -- },
+    }
   end,
 }

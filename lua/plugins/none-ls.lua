@@ -18,7 +18,7 @@ return {
         -- null_ls.builtins.diagnostics.alex, -- horrible
         null_ls.builtins.diagnostics.write_good,
         null_ls.builtins.hover.dictionary, -- this is horrible lol
-        null_ls.builtins.formatting.prettierd,
+        -- null_ls.builtins.formatting.prettierd,
         -- c#
       },
     }
