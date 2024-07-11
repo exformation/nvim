@@ -34,7 +34,9 @@ return {
         },
       },
     }
-    lspconfig.pyright.setup { capabilities = capabilities }
+    lspconfig.pyright.setup {
+      capabilities = capabilities,
+    }
     -- lspconfig.marksman.setup { capabilities = capabilities }
     lspconfig.csharp_ls.setup { capabilities = capabilities }
     lspconfig.rust_analyzer.setup {
