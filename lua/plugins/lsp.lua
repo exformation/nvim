@@ -41,15 +41,15 @@ return {
     lspconfig.csharp_ls.setup { capabilities = capabilities }
     lspconfig.rust_analyzer.setup {
       capabilities = capabilities,
-      -- settings = {
-      --   ['rust-analyzer'] = {
+      settings = {
+        ['rust-analyzer'] = {
       --     cargo = {
       --       extraEnv = {
       --         RUSTFLAGS = '-Clinker=clang -Clink-arg=-fuse-ld=lld',
       --       },
       --     },
-      --   },
-      -- },
+        },
+      },
     }
   end,
 }

@@ -35,9 +35,10 @@ vim.keymap.set('c', '<c-r>', [[<Plug>(TelescopeFuzzyCommandSearch)]])
 -- end
 -- vim.api.nvim_set_keymap('n', '<leader>D', ':set opfunc=v:lua.vim.g.DeleteBlankLinesOp<CR>g@', { noremap = true, silent = true })
 
+local e = vim.fn.expand
 local function run_example()
-  local file_name = vim.fn.expand('%:t:r')
-  vim.cmd('TermExec cmd="cargo run --example ' .. file_name .. '"')
+  vim.cmd('TermExec cmd="cargo run --example ' .. e '%:t:r' .. ' || cargo run --example ' .. e '%:h:t' .. '"')
+  vim.cmd "ToggleTerm"
 end
 
-vim.keymap.set('n', '<leader>re', run_example, { desc = 'run example' })
+vim.keymap.set('n', '<leader>re', run_example, { desc = 'run bevy example' })
