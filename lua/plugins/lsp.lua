@@ -1,3 +1,4 @@
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
@@ -41,15 +42,20 @@ return {
     lspconfig.csharp_ls.setup { capabilities = capabilities }
     lspconfig.rust_analyzer.setup {
       capabilities = capabilities,
-      settings = {
-        ['rust-analyzer'] = {
-      --     cargo = {
-      --       extraEnv = {
-      --         RUSTFLAGS = '-Clinker=clang -Clink-arg=-fuse-ld=lld',
+      -- settings = {
+      --   ['rust-analyzer'] = {
+      --     imports = {
+      --       granularity = {
+      --         group = 'crate',
       --       },
       --     },
-        },
-      },
+      --   },
+      -- },
     }
   end,
 }
+--     cargo = {
+--       extraEnv = {
+--         RUSTFLAGS = '-Clinker=clang -Clink-arg=-fuse-ld=lld',
+--       },
+--     },

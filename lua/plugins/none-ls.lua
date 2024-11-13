@@ -14,6 +14,7 @@ return {
           extra_args = { '--line-length', '200' },
         },
         null_ls.builtins.formatting.isort,
+        -- null_ls.builtins.formatting.rustfmt,
         -- markdown
         -- null_ls.builtins.code_actions.proselint,
         -- null_ls.builtins.diagnostics.proselint, -- error

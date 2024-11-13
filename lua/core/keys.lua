@@ -37,8 +37,8 @@ vim.keymap.set('c', '<c-r>', [[<Plug>(TelescopeFuzzyCommandSearch)]])
 
 local e = vim.fn.expand
 local function run_example()
-  vim.cmd('TermExec cmd="cargo run --example ' .. e '%:t:r' .. ' || cargo run --example ' .. e '%:h:t' .. '"')
-  vim.cmd "ToggleTerm"
+  vim.cmd('TermExec cmd="clear && cargo run --example ' .. e '%:t:r' .. ' || cargo run --example ' .. e '%:h:t' .. '"')
+  -- vim.cmd "ToggleTerm"
 end
 
 vim.keymap.set('n', '<leader>re', run_example, { desc = 'run bevy example' })
