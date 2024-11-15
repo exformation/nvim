@@ -51,3 +51,4 @@ local function run2_example()
 end
 
 vim.keymap.set('n', '<leader>re', run2_example, { desc = 'run bevy example' })
+vim.keymap.set('n', '<c-e>', ':Neotree toggle<esc>', { desc = 'toggle neotree' })
