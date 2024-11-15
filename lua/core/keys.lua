@@ -35,10 +35,19 @@ vim.keymap.set('c', '<c-r>', [[<Plug>(TelescopeFuzzyCommandSearch)]])
 -- end
 -- vim.api.nvim_set_keymap('n', '<leader>D', ':set opfunc=v:lua.vim.g.DeleteBlankLinesOp<CR>g@', { noremap = true, silent = true })
 
-local e = vim.fn.expand
-local function run_example()
-  vim.cmd('TermExec cmd="clear && cargo run --example ' .. e '%:t:r' .. ' || cargo run --example ' .. e '%:h:t' .. '"')
-  -- vim.cmd "ToggleTerm"
+-- local e = vim.fn.expand
+-- local function run_example()
+--   vim.cmd('TermExec cmd="clear && cargo run --example ' .. e '%:t:r' .. ' || cargo run --example ' .. e '%:h:t' .. '"')
+--   -- vim.cmd "ToggleTerm"
+-- end
+
+local function run2_example()
+  local dir = (vim.fn.expand '%:p:r'):match '.*/examples/([^/]+)'
+  if dir then
+    vim.cmd('TermExec cmd="clear && cargo run --example ' .. dir .. '"')
+  else
+    print "Not in an example directory"
+  end
 end
 
-vim.keymap.set('n', '<leader>re', run_example, { desc = 'run bevy example' })
+vim.keymap.set('n', '<leader>re', run2_example, { desc = 'run bevy example' })
