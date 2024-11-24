@@ -41,14 +41,24 @@ vim.keymap.set('c', '<c-r>', [[<Plug>(TelescopeFuzzyCommandSearch)]])
 --   -- vim.cmd "ToggleTerm"
 -- end
 
-local function run2_example()
-  local dir = (vim.fn.expand '%:p:r'):match '.*/examples/([^/]+)'
-  if dir then
-    vim.cmd('TermExec cmd="clear && cargo run --example ' .. dir .. '"')
+
+local function run_file()
+  local filetype = vim.bo.filetype
+  if filetype == "rust" then
+    local dir = (vim.fn.expand '%:p:r'):match '.*/examples/([^/]+)'
+    if dir then
+      vim.cmd('TermExec cmd="clear && cargo run --example ' .. dir .. '"')
+    else
+      print("Not in an example directory")
+    end
+  elseif filetype == "nim" then
+    vim.cmd('TermExec cmd="clear && nim r ' .. vim.fn.expand('%:p') .. '"')
   else
-    print "Not in an example directory"
+    print("Unsupported file type")
   end
 end
 
-vim.keymap.set('n', '<leader>re', run2_example, { desc = 'run bevy example' })
+
+
+vim.keymap.set('n', '<leader>re', run_file, { desc = 'run bevy example' })
 vim.keymap.set('n', '<c-e>', ':Neotree toggle<esc>', { desc = 'toggle neotree' })

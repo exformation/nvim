@@ -14,6 +14,9 @@ return {
           extra_args = { '--line-length', '200' },
         },
         null_ls.builtins.formatting.isort,
+        null_ls.builtins.formatting.nimpretty.with {
+          extra_args = { '--maxLineLen:', '120' },
+        },
         -- null_ls.builtins.formatting.rustfmt,
         -- markdown
         -- null_ls.builtins.code_actions.proselint,
