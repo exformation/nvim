@@ -6,19 +6,17 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    vim.keymap.set('n', 't', '<Nop>', { noremap = true, silent = true })
+    -- vim.keymap.set('n', 't', '<Nop>', { noremap = true, silent = true })
     local file_id_map = {}
     local current_id = 0
-
-    -- Function to generate an ID string based on current_id
     local function generate_id(id)
-      -- if id < 26 then
-      --   return string.char(97 + id)        -- 'a' to 'z'
-      -- elseif id < 52 then
-      --   return string.char(65 + (id - 26)) -- 'A' to 'Z'
-      -- else
-      --   return tostring(id - 52)           -- '0' to '99'
-      -- end
+      if id < 26 then
+        return string.char(97 + id)        -- 'a' to 'z'
+      elseif id < 52 then
+        return string.char(65 + (id - 26)) -- 'A' to 'Z'
+      else
+        return tostring(id - 52)           -- '0' to '99'
+      end
       return id
     end
 
@@ -34,8 +32,12 @@ return {
       close_if_last_window = true,
       filesystem = {
         follow_current_file = { enabled = true, leave_dirs_open = true },
+        -- todo: toggle for filtering out files not of current extension
+        -- filtered_items = {
+        -- always_show_by_pattern = { '*.lua' },
+        -- hide_by_pattern = { '!(*.lua)' }
+        -- },
       },
-
       default_component_configs = {
         icon = {
           provider = function(icon, node, _)
@@ -54,12 +56,8 @@ return {
                 vim.cmd('edit ' .. node.path)
               end, { desc = vim.fn.fnamemodify(node.path, ':t'), noremap = true })
             end
-
-            -- Display the icon text
             icon.text = file_id_map[node.path]
           end,
-          default = '*',
-          highlight = 'NeoTreeFileIcon',
         },
       },
       -- event_handlers = {

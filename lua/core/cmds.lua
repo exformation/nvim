@@ -3,17 +3,17 @@ vim.api.nvim_create_augroup('FormatBuffer', { clear = true })
 vim.api.nvim_create_augroup('WriteBuffer', { clear = true })
 vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 
--- vim.api.nvim_create_autocmd('CursorMoved', {
---   desc = 'Center the cursor when moving',
---   group = 'CenterCursor',
---   pattern = '*',
---   callback = function()
---     if vim.bo.buftype == '' then
---       vim.cmd [[normal! zz]]
---     end
---   end,
--- })
---
+vim.api.nvim_create_autocmd('CursorMoved', {
+  desc = 'Center the cursor when moving',
+  group = 'CenterCursor',
+  pattern = '*',
+  callback = function()
+    if vim.bo.buftype == '' then
+      vim.cmd [[normal! zz]]
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ 'BufLeave', 'VimLeavePre' }, {
   desc = 'Format the buffer before leaving',
   group = 'FormatBuffer',
