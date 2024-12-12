@@ -165,6 +165,9 @@ return {
           'scope',
         },
       },
+      t = {
+        name = 'file jump',
+      }
     }
   end,
 }

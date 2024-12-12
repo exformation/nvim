@@ -52,7 +52,8 @@ local function run_file()
       print("Not in an example directory")
     end
   elseif filetype == "nim" then
-    vim.cmd('TermExec cmd="clear && nim r ' .. vim.fn.expand('%:p') .. '"')
+    -- vim.cmd('TermExec cmd="clear && nim r ' .. vim.fn.expand('%:p') .. '"')
+    vim.cmd('TermExec cmd="clear && nim r main.nim"')
   else
     print("Unsupported file type")
   end
