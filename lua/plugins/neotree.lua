@@ -30,6 +30,15 @@ return {
       enable_git_status = false,
       enable_diagnostics = false,
       close_if_last_window = true,
+      sort_function = function(a, b)
+        if a.type ~= b.type then
+          return a.type > b.type
+        end
+        local a_mtime = (vim.loop.fs_stat(a.path) or {}).mtime
+        local b_mtime = (vim.loop.fs_stat(b.path) or {}).mtime
+        return (a_mtime and a_mtime.sec or 0) > (b_mtime and b_mtime.sec or 0)
+      end,
+
       filesystem = {
         follow_current_file = { enabled = true, leave_dirs_open = true },
         -- todo: toggle for filtering out files not of current extension
