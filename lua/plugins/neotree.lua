@@ -1,3 +1,7 @@
+-- TODO: toggle for only showing files of current filetype
+-- TODO: remember which directories were open?
+-- TODO: better ID generation?
+
 return {
   'nvim-neo-tree/neo-tree.nvim',
   branch = 'v3.x',
@@ -6,7 +10,6 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    -- vim.keymap.set('n', 't', '<Nop>', { noremap = true, silent = true })
     local file_id_map = {}
     local current_id = 0
     local function generate_id(id)
@@ -17,14 +20,14 @@ return {
       else
         return tostring(id - 52)           -- '0' to '99'
       end
-      return id
+      -- return id
     end
 
     require('neo-tree').setup {
       window = {
         width = 30,
         mappings = {
-          ['P'] = { 'toggle_preview', config = { use_float = false } },
+          ['Z'] = 'expand_all_nodes',
         },
       },
       enable_git_status = false,
@@ -69,18 +72,20 @@ return {
           end,
         },
       },
-      -- event_handlers = {
-      --   {
-      --     event = 'after_render',
-      --     handler = function()
-      --       local state = require('neo-tree.sources.manager').get_state 'filesystem'
-      --       if not require('neo-tree.sources.common.preview').is_active() then
-      --         state.config = { use_float = false }
-      --         state.commands.toggle_preview(state)
-      --       end
-      --     end,
-      --   },
-      -- },
+      event_handlers = {
+        {
+          event = 'after_render',
+          handler = function()
+            local state = require('neo-tree.sources.manager').get_state 'filesystem'
+            if vim.api.nvim_buf_get_option(0, 'filetype') == 'neo-tree' then
+              if not require('neo-tree.sources.common.preview').is_active() then
+                state.config = { use_float = false }
+                state.commands.toggle_preview(state)
+              end
+            end
+          end,
+        },
+      },
     }
   end,
 }
