@@ -7,17 +7,19 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
+    -- TODO: idk how to get whichkey to show these, it used to work
+    -- 'folke/which-key.nvim',
   },
   config = function()
     local file_id_map = {}
     local current_id = 0
     local function generate_id(id)
       if id < 26 then
-        return string.char(97 + id) -- 'a' to 'z'
+        return string.char(97 + id)        -- 'a' to 'z'
       elseif id < 52 then
         return string.char(65 + (id - 26)) -- 'A' to 'Z'
       else
-        return tostring(id - 52) -- '0' to '99'
+        return tostring(id - 52)           -- '0' to '99'
       end
       -- return id
     end
@@ -67,7 +69,7 @@ return {
                 'n',
                 's' .. id,
                 function() vim.cmd('edit ' .. node.path) end,
-                { desc = vim.fn.fnamemodify(node.path, ':t'), noremap = true }
+                { desc = vim.fn.fnamemodify(node.path, ':t') } --, remap = true }
               )
               -- wk.add {
               --   { 's' .. id, function() vim.cmd('edit ' .. node.path) end, desc = vim.fn.fnamemodify(node.path, ':t') },
