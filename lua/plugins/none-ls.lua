@@ -7,17 +7,17 @@ return {
       sources = {
         -- lua
         null_ls.builtins.formatting.stylua.with {
-          extra_args = { '--column-width', '120' },
+          extra_args = { '--column-width', '140', '--collapse-simple-statement', 'Always' },
         },
         -- nix
         null_ls.builtins.formatting.nixfmt,
         -- python
         null_ls.builtins.formatting.black.with {
-          extra_args = { '--line-length', '120' },
+          extra_args = { '--line-length', '140' },
         },
         null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.nimpretty.with {
-          extra_args = { '--maxLineLen:', '120' },
+          extra_args = { '--maxLineLen:', '140' },
         },
         -- null_ls.builtins.formatting.rustfmt,
         -- markdown

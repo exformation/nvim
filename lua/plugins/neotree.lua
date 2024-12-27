@@ -13,14 +13,19 @@ return {
     local current_id = 0
     local function generate_id(id)
       if id < 26 then
-        return string.char(97 + id)        -- 'a' to 'z'
+        return string.char(97 + id) -- 'a' to 'z'
       elseif id < 52 then
         return string.char(65 + (id - 26)) -- 'A' to 'Z'
       else
-        return tostring(id - 52)           -- '0' to '99'
+        return tostring(id - 52) -- '0' to '99'
       end
       -- return id
     end
+
+    -- local wk = require 'which-key'
+    -- wk.add {
+    --   { 'f', function() require('flash').jump() end, desc = 'Flash' },
+    -- }
 
     require('neo-tree').setup {
       window = {
@@ -33,9 +38,7 @@ return {
       enable_diagnostics = false,
       close_if_last_window = true,
       sort_function = function(a, b)
-        if a.type ~= b.type then
-          return a.type > b.type
-        end
+        if a.type ~= b.type then return a.type > b.type end
         local a_mtime = (vim.loop.fs_stat(a.path) or {}).mtime
         local b_mtime = (vim.loop.fs_stat(b.path) or {}).mtime
         return (a_mtime and a_mtime.sec or 0) > (b_mtime and b_mtime.sec or 0)
@@ -51,9 +54,7 @@ return {
       default_component_configs = {
         icon = {
           provider = function(icon, node, _)
-            if node.type ~= 'file' then
-              return
-            end
+            if node.type ~= 'file' then return end
 
             -- Assign an ID if the node.path is not yet mapped
             if not file_id_map[node.path] then
@@ -62,9 +63,15 @@ return {
               current_id = current_id + 1
 
               -- Set up a mapping for <prefix><id>
-              vim.keymap.set('n', 's' .. id, function()
-                vim.cmd('edit ' .. node.path)
-              end, { desc = vim.fn.fnamemodify(node.path, ':t'), noremap = true })
+              vim.keymap.set(
+                'n',
+                's' .. id,
+                function() vim.cmd('edit ' .. node.path) end,
+                { desc = vim.fn.fnamemodify(node.path, ':t'), noremap = true }
+              )
+              -- wk.add {
+              --   { 's' .. id, function() vim.cmd('edit ' .. node.path) end, desc = vim.fn.fnamemodify(node.path, ':t') },
+              -- }
             end
             icon.text = file_id_map[node.path]
           end,
