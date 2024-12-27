@@ -5,16 +5,13 @@ return {
     vim.o.timeout = true
     vim.o.timeoutlen = 100
   end,
-  opts = {},
+  opts = {
+    icons = { mappings = false },
+  },
   config = function()
     local wk = require 'which-key'
-
     local tsc = require 'telescope.builtin'
     local lsp = vim.lsp.buf
-    local dap = require 'dap'
-    local widgets = require 'dap.ui.widgets'
-
-    -- TODO: this should probably go somewhere else (require(myterminal) idk)
     local Terminal = require('toggleterm.terminal').Terminal
     local lazygit = Terminal:new {
       cmd = 'lazygit',
@@ -22,152 +19,80 @@ return {
       direction = 'tab',
     }
 
-    wk.register {
-      ['<leader>'] = {
-        s = {
-          name = 'search',
-          s = {
-            function()
-              tsc.find_files { find_command = { 'sh', '-c', "rg '' --files-with-matches" } }
-            end,
-            'text files',
-          },
-          f = { tsc.find_files, 'files' },
-          g = { tsc.live_grep, 'grep' },
-          b = { tsc.buffers, 'buffers' },
-          H = { tsc.help_tags, 'help' },
-          k = { tsc.keymaps, 'keymaps' },
-          T = { tsc.tags, 'tags' },
-          l = { tsc.loclist, 'loclist' },
-          c = { tsc.commands, 'commands' },
-          q = { tsc.quickfix, 'quickfix' },
-          m = { tsc.man_pages, 'man pages' },
-          t = { tsc.treesitter, 'treesitter' },
-          C = { tsc.colorscheme, 'colorscheme' },
-          d = { tsc.diagnostics, 'dianostics' },
-          r = { tsc.resume, 'resume' },
-          h = {
-            name = 'history',
-            c = { tsc.command_history, 'command history' },
-            s = { tsc.search_history, 'search history' },
-          },
-          B = { tsc.current_buffer_fuzzy_find, 'buffer' },
-        },
-        g = {
-          name = 'git',
-          c = { tsc.git_commits, 'commits' },
-          b = { tsc.git_branches, 'branches' },
-          l = {
-            function()
-              lazygit:toggle()
-            end,
-            'lazygit',
-          },
-        },
-        l = {
-          name = 'lsp',
-          D = { tsc.lsp_definitions, 'definitions' },
-          I = { tsc.lsp_implementations, 'implementations' },
-          S = { tsc.lsp_document_symbols, 'doc symbols' },
-          W = { tsc.lsp_workspace_symbols, 'workspace symbols' },
-          T = { tsc.lsp_type_definitions, 'types' },
+    wk.add {
+      { '<leader>s',   group = 'search' },
+      {
+        '<leader>ss',
+        function()
+          tsc.find_files { find_command = { 'sh', '-c', "rg '' --files-with-matches" } }
+        end,
+        desc = 'Text files',
+      },
+      { '<leader>sf',  tsc.find_files,                desc = 'Files' },
+      { '<leader>sg',  tsc.live_grep,                 desc = 'Grep' },
+      { '<leader>sb',  tsc.buffers,                   desc = 'Buffers' },
+      { '<leader>sH',  tsc.help_tags,                 desc = 'Help' },
+      { '<leader>sk',  tsc.keymaps,                   desc = 'Keymaps' },
+      { '<leader>sT',  tsc.tags,                      desc = 'Tags' },
+      { '<leader>sl',  tsc.loclist,                   desc = 'Loclist' },
+      { '<leader>sc',  tsc.commands,                  desc = 'Commands' },
+      { '<leader>sq',  tsc.quickfix,                  desc = 'Quickfix' },
+      { '<leader>sm',  tsc.man_pages,                 desc = 'Man pages' },
+      { '<leader>st',  tsc.treesitter,                desc = 'Treesitter' },
+      { '<leader>sC',  tsc.colorscheme,               desc = 'Colorscheme' },
+      { '<leader>sd',  tsc.diagnostics,               desc = 'Diagnostics' },
+      { '<leader>sr',  tsc.resume,                    desc = 'Resume' },
+      { '<leader>shc', tsc.command_history,           desc = 'Command history' },
+      { '<leader>shs', tsc.search_history,            desc = 'Search history' },
+      { '<leader>sB',  tsc.current_buffer_fuzzy_find, desc = 'Buffer' },
 
-          d = { lsp.definition, 'definition' },
-          c = { lsp.declaration, 'declaration' },
-          h = { lsp.hover, 'hover' },
-          i = { lsp.implementation, 'implementation' },
-          s = { lsp.signature_help, 'signature help' },
-          t = { lsp.type_definition, 'type definition' },
-          n = { lsp.rename, 'rename' },
-          r = {
-            function()
-              tsc.lsp_references {
-                show_line = false,
-              }
-            end,
-            'references',
-          },
-          a = { lsp.code_action, 'code action' },
-          f = {
-            function()
-              lsp.format { async = true }
-            end,
-            'format',
-          },
-          -- LspInfo
-          ['?'] = {
-            ':LspInfo<cr>',
-            'info',
-          },
-        },
-        d = {
-          name = 'dap',
-          c = { dap.continue, 'continue' },
-          o = { dap.step_over, 'step over' },
-          i = { dap.step_into, 'step into' },
-          O = { dap.step_out, 'step out' },
-          b = { dap.toggle_breakpoint, 'toggle breakpoint' },
-          r = { dap.repl.open, 'open repl' },
-          l = { dap.run_last, 'run last' },
-          h = { widgets.hover, 'hover' },
-          p = { widgets.preview, 'preview' },
-          f = {
-            function()
-              widgets.centered_float(widgets.frames)
-            end,
-            'frames',
-          },
-          s = {
-            function()
-              widgets.centered_float(widgets.frames)
-            end,
-            'scopes',
-          },
-        },
-        r = {
-          name = 'run',
-          d = { ':Overseer run<cr>', 'run' },
-        },
-        q = {
-          ':wa | qa<cr>',
-          'quit',
-        },
-        x = {
-          ':q<cr>',
-          'close buffer',
-        },
-        t = {
-          name = 'treesitter',
-        },
-        ['-'] = {
-          ':Oil<cr>',
-          'oil',
-        },
-        ['<tab>'] = {
-          ':b#<cr>',
-          'previous buffer',
-        },
+      { '<leader>g',   group = 'git' },
+      { '<leader>gc',  tsc.git_commits,               desc = 'Commits' },
+      { '<leader>gb',  tsc.git_branches,              desc = 'Branches' },
+      {
+        '<leader>gl',
+        function()
+          lazygit:toggle()
+        end,
+        desc = 'Lazygit',
       },
-      -- next: hunk,
-      J = {
-        name = 'next',
-        d = { vim.diagnostic.goto_next, 'diagnostic' },
-        n = {
-          [[<cmd>lua MiniIndentscope.operator('bottom', true)<cr>]],
-          'scope',
-        },
+
+      { '<leader>l',  group = 'lsp' },
+      { '<leader>lD', tsc.lsp_definitions,       desc = 'Definitions' },
+      { '<leader>lI', tsc.lsp_implementations,   desc = 'Implementations' },
+      { '<leader>lS', tsc.lsp_document_symbols,  desc = 'Doc symbols' },
+      { '<leader>lW', tsc.lsp_workspace_symbols, desc = 'Workspace symbols' },
+      { '<leader>lT', tsc.lsp_type_definitions,  desc = 'Types' },
+      { '<leader>ld', lsp.definition,            desc = 'Definition' },
+      { '<leader>lc', lsp.declaration,           desc = 'Declaration' },
+      { '<leader>lh', lsp.hover,                 desc = 'Hover' },
+      { '<leader>li', lsp.implementation,        desc = 'Implementation' },
+      { '<leader>ls', lsp.signature_help,        desc = 'Signature help' },
+      { '<leader>lt', lsp.type_definition,       desc = 'Type definition' },
+      { '<leader>ln', lsp.rename,                desc = 'Rename' },
+      {
+        '<leader>lr',
+        function()
+          tsc.lsp_references { show_line = false }
+        end,
+        desc = 'References',
       },
-      K = {
-        name = 'prev',
-        d = { vim.diagnostic.goto_prev, 'diagnostic' },
-        n = {
-          [[<cmd>lua MiniIndentscope.operator('top', true)<cr>]],
-          'scope',
-        },
+      { '<leader>la',    lsp.code_action,          desc = 'Code action' },
+      {
+        '<leader>lf',
+        function()
+          lsp.format { async = true }
+        end,
+        desc = 'Format',
       },
-      t = {
-        name = 'file jump',
-      }
+      { '<leader>l?',    '<cmd>LspInfo<cr>',       desc = 'Info' },
+      -- { '<leader>r',     ':Overseer run<cr>',      desc = 'Run' },
+      { '<leader>q',     ':wa | qa<cr>',           desc = 'Quit' },
+      { '<leader>x',     ':q<cr>',                 desc = 'Close buffer' },
+      { '<leader>-',     ':Oil<cr>',               desc = 'Oil' },
+      { '<leader><tab>', ':b#<cr>',                desc = 'Previous buffer' },
+      { 'Jd',            vim.diagnostic.goto_next, desc = 'Next diagnostic' },
+      { 'Kd',            vim.diagnostic.goto_prev, desc = 'Prev diagnostic' },
     }
   end,
 }

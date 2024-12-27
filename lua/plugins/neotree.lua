@@ -1,10 +1,9 @@
 -- TODO: toggle for only showing files of current filetype
--- TODO: remember which directories were open?
+-- TODO: remember expanded directories?
 -- TODO: better ID generation?
 
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  branch = 'v3.x',
   dependencies = {
     'nvim-lua/plenary.nvim',
     'MunifTanjim/nui.nvim',
@@ -44,10 +43,9 @@ return {
 
       filesystem = {
         follow_current_file = { enabled = true, leave_dirs_open = true },
-        -- todo: toggle for filtering out files not of current extension
         -- filtered_items = {
-        -- always_show_by_pattern = { '*.lua' },
-        -- hide_by_pattern = { '!(*.lua)' }
+        --   always_show_by_pattern = { '*.lua' },
+        --   never_show_by_pattern = { '*' },
         -- },
       },
       default_component_configs = {
@@ -64,7 +62,7 @@ return {
               current_id = current_id + 1
 
               -- Set up a mapping for <prefix><id>
-              vim.keymap.set('n', 't' .. id, function()
+              vim.keymap.set('n', 's' .. id, function()
                 vim.cmd('edit ' .. node.path)
               end, { desc = vim.fn.fnamemodify(node.path, ':t'), noremap = true })
             end

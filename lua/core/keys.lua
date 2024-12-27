@@ -61,5 +61,5 @@ end
 
 
 
-vim.keymap.set('n', '<leader>re', run_file, { desc = 'run bevy example' })
+vim.keymap.set('n', '<leader>re', run_file, { desc = 'run' })
 vim.keymap.set('n', '<c-e>', ':Neotree focus<esc>', { desc = 'toggle neotree' })

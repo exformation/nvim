@@ -34,20 +34,20 @@
 --   end,
 -- }
 return {
-  dir = '/home/exform/repos/nvim-plugins/prsr.nvim',
-  dependencies = {
-    'nvim-lua/plenary.nvim',
-  },
-  config = function()
-    -- require('prsr').setup {
-    --   prefix = '<C-e>',
-    -- }
-
-    vim.keymap.set('n', '<leader>f', function()
-      package.loaded['prsr'] = nil
-      require('prsr').setup {
-        logger = true,
-      }
-    end, { desc = 'prsr', noremap = true, silent = true })
-  end,
+  -- dir = '/home/exform/repos/nvim-plugins/prsr.nvim',
+  -- dependencies = {
+  --   'nvim-lua/plenary.nvim',
+  -- },
+  -- config = function()
+  --   -- require('prsr').setup {
+  --   --   prefix = '<C-e>',
+  --   -- }
+  --
+  --   vim.keymap.set('n', '<leader>f', function()
+  --     package.loaded['prsr'] = nil
+  --     require('prsr').setup {
+  --       logger = true,
+  --     }
+  --   end, { desc = 'prsr', noremap = true, silent = true })
+  -- end,
 }
