@@ -2,6 +2,7 @@ vim.keymap.set({ 't', 'i' }, 'kj', [[<c-\><c-n>]])
 
 vim.keymap.set('n', 'J', '<nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'K', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 's', '<nop>', { noremap = true, silent = true })
 
 -- plugin dev (TODO: put these with whichkey?)
 vim.keymap.set('n', '<leader>t', [[:w | source %<cr>]], { desc = 'source current file' })
@@ -61,5 +62,5 @@ end
 
 
 
-vim.keymap.set('n', '<leader>re', run_file, { desc = 'run' })
+vim.keymap.set('n', '<leader>r', run_file, { desc = 'run' })
 vim.keymap.set('n', '<c-e>', ':Neotree focus<esc>', { desc = 'toggle neotree' })

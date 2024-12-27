@@ -2,12 +2,12 @@ return {
   'folke/which-key.nvim',
   event = 'VeryLazy',
   init = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 100
+    -- vim.o.timeout = true
+    -- vim.o.timeoutlen = 100
   end,
-  opts = {
-    icons = { mappings = false },
-  },
+  -- opts = {
+  --   icons = { mappings = false },
+  -- },
   config = function()
     local wk = require 'which-key'
     local tsc = require 'telescope.builtin'
@@ -17,6 +17,12 @@ return {
       cmd = 'lazygit',
       dir = 'git_dir',
       direction = 'tab',
+    }
+
+    wk.setup {
+      icons = {
+        mappings = false,
+      },
     }
 
     wk.add {

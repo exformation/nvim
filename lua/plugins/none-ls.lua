@@ -6,12 +6,14 @@ return {
     null_ls.setup {
       sources = {
         -- lua
-        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.stylua.with {
+          extra_args = { '--column-width', '120' },
+        },
         -- nix
         null_ls.builtins.formatting.nixfmt,
         -- python
         null_ls.builtins.formatting.black.with {
-          extra_args = { '--line-length', '200' },
+          extra_args = { '--line-length', '120' },
         },
         null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.nimpretty.with {
