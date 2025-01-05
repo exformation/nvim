@@ -69,6 +69,7 @@ return {
                 'n',
                 's' .. id,
                 function() vim.cmd('edit ' .. node.path) end,
+                -- TODO: no clue if I should be doing noremap, remap, or what
                 { desc = vim.fn.fnamemodify(node.path, ':t') } --, remap = true }
               )
               -- wk.add {
